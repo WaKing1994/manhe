@@ -1,13 +1,13 @@
 package com.manhe.dal.dao;
 
 
-
 import com.manhe.dal.dataobject.AdminDO;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
 
-
+@Mapper
 public interface AdminDAO {
 
     void insert(AdminDO adminDO);

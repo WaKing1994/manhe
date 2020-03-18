@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manhe.dal.dao.AdminDAO">
+
+
+    <sql id="allFields">
+		 id,
+        username,
+        phone,
+        password
+    </sql>
+    <sql id="all_columns">
+        id,
+        username,
+        phone,
+        password
+    </sql>
+    <sql id="table">
+        admin
+    </sql>
+
+    <!-- 插入 -->
+    <insert id="insert" parameterType="com.manhe.dal.dataobject.AdminDO">
+        INSERT INTO admin(username,phone,password)
+        VALUES (#{username},#{phone},#{password})
+    </insert>
+
+    <update id="update" parameterType="com.manhe.dal.dataobject.AdminDO">
+        update
+        <include refid="table"/>
+        SET username = #{username},
+        phone = #{phone},
+        password = #{password}
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="map">
+        DELETE FROM admin
+        WHERE 1=1
+        <include refid="condition"></include>
+    </delete>
+    <!-- 查找一条记录 -->
+    <select id="get" parameterType="map" resultType="com.manhe.dal.dataobject.AdminDO">
+        SELECT
+        <include refid="allFields"/>
+        FROM admin
+        WHERE 1=1
+        <include refid="condition"></include>
+        LIMIT 0, 1
+    </select>
+
+    <select id="getListByMap" parameterType="Map" resultType="com.manhe.dal.dataobject.AdminDO">
+        select
+        id,
+        username,
+        phone
+        from admin
+        where 1=1
+        <include refid="condition"></include>
+        order by id desc
+    </select>
+
+    <!-- 条件 -->
+    <sql id="condition">
+        <if test="id != null and id != ''">
+            AND id = #{id}
+        </if>
+        <if test="password != null and password != ''">
+            AND password = #{password}
+        </if>
+        <if test="username !=null and username != ''">
+            AND username = #{username}
+        </if>
+    </sql>
+
+</mapper>

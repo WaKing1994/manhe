@@ -30,7 +30,6 @@ public class LoginController {
         param.put("password", password);
         AdminDO adminDO = adminService.get(param);
 
-
         if (adminDO != null) {
             session = request.getSession(true);
             session.setAttribute("user", adminDO);

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manhe.dal.dao.ProductDAO">
+
+
+    <sql id="allFields">
+		 id,
+        `name`,
+        priority,
+        imageUrl,
+        details,
+        banner
+    </sql>
+
+    <sql id="table">
+        `product`
+    </sql>
+
+    <!-- 插入 -->
+    <insert id="insert" parameterType="com.manhe.dal.dataobject.ProductDO">
+        INSERT INTO  <include refid="table"/>
+        (`name`,priority,imageUrl,details,banner)
+        VALUES (#{name},#{priority},#{imageUrl},#{details},#{banner})
+    </insert>
+
+    <update id="update" parameterType="com.manhe.dal.dataobject.ProductDO">
+        update
+        <include refid="table"/>
+        SET `name` = #{name},
+        `priority` = #{priority},
+        `imageUrl` = #{imageUrl},
+        `details` = #{details},
+        `banner` = #{banner}
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="map">
+        DELETE FROM <include refid="table"/>
+        WHERE 1=1
+        <include refid="condition"></include>
+    </delete>
+    <!-- 查找一条记录 -->
+    <select id="get" parameterType="map" resultType="com.manhe.dal.dataobject.ProductDO">
+        SELECT
+        <include refid="allFields"/>
+        FROM <include refid="table"/>
+        WHERE 1=1
+        <include refid="condition"></include>
+        LIMIT 0, 1
+    </select>
+
+    <select id="getListByMap" parameterType="Map" resultType="com.manhe.dal.dataobject.ProductDO">
+        select
+        <include refid="allFields"/>
+        from <include refid="table"/>
+        where 1=1
+        <include refid="condition"></include>
+        order by id desc
+    </select>
+
+    <!-- 条件 -->
+    <sql id="condition">
+        <if test="id != null and id != ''">
+            AND id = #{id}
+        </if>
+        <if test="name != null and name != ''">
+            AND `name` = #{name}
+        </if>
+    </sql>
+
+</mapper>

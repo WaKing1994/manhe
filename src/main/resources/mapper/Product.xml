@@ -10,7 +10,8 @@
         priority,
         imageUrl,
         details,
-        banner
+        banner,
+        categoryId
     </sql>
 
     <sql id="table">
@@ -20,8 +21,8 @@
     <!-- 插入 -->
     <insert id="insert" parameterType="com.manhe.dal.dataobject.ProductDO">
         INSERT INTO  <include refid="table"/>
-        (`name`,priority,imageUrl,details,banner)
-        VALUES (#{name},#{priority},#{imageUrl},#{details},#{banner})
+        (`name`,priority,imageUrl,details,banner,categoryId)
+        VALUES (#{name},#{priority},#{imageUrl},#{details},#{banner},#{categoryId})
     </insert>
 
     <update id="update" parameterType="com.manhe.dal.dataobject.ProductDO">
@@ -31,7 +32,8 @@
         `priority` = #{priority},
         `imageUrl` = #{imageUrl},
         `details` = #{details},
-        `banner` = #{banner}
+        `banner` = #{banner},
+        categoryId = #{categoryId}
         where id=#{id}
     </update>
 
@@ -57,7 +59,7 @@
         from <include refid="table"/>
         where 1=1
         <include refid="condition"></include>
-        order by id desc
+        order by priority desc
     </select>
 
     <!-- 条件 -->
@@ -67,6 +69,9 @@
         </if>
         <if test="name != null and name != ''">
             AND `name` = #{name}
+        </if>
+        <if test="categoryId != null">
+            AND `categoryId` = #{categoryId}
         </if>
     </sql>
 

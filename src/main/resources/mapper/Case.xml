@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.manhe.dal.dao.CaseDAO">
 
-
     <sql id="allFields">
 		 id,
         `name`,
@@ -59,7 +58,7 @@
         from <include refid="table"/>
         where 1=1
         <include refid="condition"></include>
-        order by id desc
+        order by priority desc
     </select>
 
     <!-- 条件 -->

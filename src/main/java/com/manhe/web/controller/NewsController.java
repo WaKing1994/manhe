@@ -19,8 +19,10 @@ public class NewsController {
     @RequestMapping("/news")
     public ModelAndView news() {
 
-
         ModelAndView mav = new ModelAndView("news/news");
+        List<ProductCategoryDO> productCategory = productCategoryService.find(null);
+        mav.addObject("productCategory", productCategory);
+
         return mav;
     }
 

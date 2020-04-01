@@ -18,13 +18,14 @@ import java.util.Map;
 public class CaseController {
     @RequestMapping("/case")
     public ModelAndView index(Integer categoryId) {
+        ModelAndView mav = new ModelAndView("cases/case");
+        List<ProductCategoryDO> productCategory = productCategoryService.find(null);
+        mav.addObject("productCategory", productCategory);
 
         List<CaseCategoryDO> caseCategoryDOS = caseCategoryService.find(null);
-
         Map<String,Object> caseParam = new HashMap<>();
         caseParam.put("categoryId",categoryId);
         List<CaseDO> cases = caseService.find(caseParam);
-        ModelAndView mav = new ModelAndView("cases/case");
         mav.addObject("caseCategoryDOS", caseCategoryDOS);
         mav.addObject("cases", cases);
         return mav;
@@ -36,4 +37,6 @@ public class CaseController {
     private CaseCategoryService caseCategoryService;
     @Autowired
     private CaseService caseService;
+    @Autowired
+    private ProductCategoryService productCategoryService;
 }

@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-<title>苏州君安铜门集团有限公司</title>
-<meta name="keywords" content="苏州君安铜门集团有限公司 ">
-<meta name="description" content="苏州君安铜门集团有限公司 ">
+<title>诸暨市金耐门业科技有限公司</title>
+<meta name="keywords" content="诸暨市金耐门业科技有限公司 ">
+<meta name="description" content="诸暨市金耐门业科技有限公司 ">
 <meta name="Author" content="云度科技 www.clouddo.cn">
 <!-- Bootstrap -->
 <link href="css\bootstrap.min.css" rel="stylesheet">
@@ -72,72 +72,45 @@ $(function(){
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a class="navbar-brand" href="default.html"><img src="images\logo.jpg" alt=""></a> </div>
+          <a class="navbar-brand" href="/"><img src="images\logo.jpg" alt=""></a> </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav menu">
-            <li><a href="index.html">苏君首页<i></i></a></li>
-            <li><a href="about.html">走进君安<i></i></a>
+            <li><a href="/">曼赫首页<i></i></a></li>
+            <li><a href="/about">走进曼赫<i></i></a>
               <ul>
-                <li><a href="about.html">公司简介</a></li>
-                <li><a href="about-1.html?ID=73">公司荣誉</a></li>
-              	<li><a href="about-2.html?ID=74">生产设备</a></li>
-                <li><a href="about-3.html?ID=66">企业文化</a></li>
-                <li><a href="about-4.html?ID=67">友好往来</a></li>
+                <li><a href="/about">公司简介</a></li>
+                <li><a href="/about?type=honor">公司荣誉</a></li>
+                <li><a href="/about?type=equipment">生产设备</a></li>
               </ul>
             </li>
-            <li><a href="news.html">公司新闻<i></i></a></li>
-            <li><a href="product.html">产品展示<i></i></a>
+            <li><a href="/news">公司新闻<i></i></a></li>
+            <li><a href="/product" >产品展示<i></i></a>
               <ul>
- 
-              <li><a href="product-1.html?ClassID=4">平开铜门系列</a></li>
- 
-              <li><a href="product-2.html?ClassID=5">平移铜门系列</a></li>
- 
-              <li><a href="product-3.html?ClassID=6">旋转铜门系列</a></li>
- 
-              <li><a href="product-4.html?ClassID=7">折叠铜门系列</a></li>
- 
-              <li><a href="product-5.html?ClassID=3">母子铜门系列</a></li>
- 
-              <li><a href="product-6.html?ClassID=1">门中套门铜门系列</a></li>
- 
-              <li><a href="product-7.html?ClassID=8">欧式铜门系列</a></li>
- 
-              <li><a href="product-8.html?ClassID=2">镂空玻璃铜门系列</a></li>
- 
-              <li><a href="product-9.html?ClassID=9">中式铜门系列</a></li>
- 
-              <li><a href="product-10.html?ClassID=10">时尚简约铜门系列</a></li>
- 
-              <li><a href="product-11.html?ClassID=11">铜壁画</a></li>
- 
-              <li><a href="product-12.html?ClassID=12">铜雨蓬</a></li>
- 
-              <li><a href="product-13.html?ClassID=13">铜装饰</a></li>
+
+              <li th:each="item : ${productCategory}"><a th:href="@{/product(categoryId=${item.id})}" th:text="${{item.name}}"></a></li>
               </ul>
             </li>
-            <li><a href="case.html">典型工程<i></i></a></li>
-            <li><a href="service.html">客户服务<i></i></a>
+            <li><a href="/case">典型工程<i></i></a></li>
+            <li><a href="/service">客户服务<i></i></a>
               <ul>
-          
-     <li><a href="service-1.html?ID=72">售后服务</a></li>
- 
-     <li><a href="service-2.html?ID=71">销售区域</a></li>
- 
-     <li><a href="service.php?ID=70">销售方式</a></li>
+
+     <li><a href="/service">售后服务</a></li>
+
+     <li><a href="/service?type=area">销售区域</a></li>
+
+     <li><a href="/service?type=channel">销售方式</a></li>
               </ul>
             </li>
-            <li><a href="login.html">公司内网<i></i></a></li>
-            <li><a href="contact.html">联系我们<i></i></a></li>
+            <li><a href="/contact">联系我们<i></i></a></li>
           </ul>
 <script type="text/javascript">
-	$(document).ready(function () {
-		$('.menu li a').each(function () {
-				if ($($(this))[0].href == String(window.location))
-					$(this).addClass('current').attr('href', 'javascript:void(0);');
-			});
-		});
+  $(document).ready(function () {
+    $('.menu li a').each(function () {
+        if ($($(this))[0].href == String(window.location))
+          $(this).addClass('current').attr('href', 'javascript:void(0);');
+      });
+    });
 </script> 
         </div>
         <!-- /.navbar-collapse --> 
@@ -186,7 +159,7 @@ $(function(){
       </div>
       <div class="inner_con_ser">
         <div class="ser"><div class="ser_fl col-md-6"><img src="images\ser1-1.jpg" class="center-block img-responsive"></div><div class="ser_fr col-md-6"><img src="images\ser1-2.jpg"><h3>保修期</h3><p>每樘门附质保书，实行规定年限的免费保修期。</p></div></div><div class="ser"><div class="ser_fr col-md-6"><img src="images\ser2-1.jpg"><h3>保修期以外的服务条例</h3><p>在产品超出免费保修期以后，苏州君安铜门公司仍提供良好的支持和服务，客户服务中心的内容及服务流程，对于保修期外的产品，仍将有效。在确定和解决用户产品所发生的故障时，我公司将不收取服务费用，只收取零配件的成本费。</p></div><div class="ser_fl col-md-6"><img src="images\ser2-2.jpg" class="center-block img-responsive"></div></div><div class="ser"><div class="ser_fl col-md-6"><img src="images\ser3-1.jpg" class="center-block img-responsive"></div><div class="ser_fr col-md-6"><img src="images\ser3-2.jpg"><h3>服务方式及响应时间</h3><p>任何产品出现故障，苏州君安铜门公司将给予下列承诺：
-紧急事项如门关不上或打不开，收到通知后40分钟内出发，到现场完成客户提出的维修要求，如需更换配件或送修，我公司将在2个工作日内负责解决。</p></div></div><div class="ser"><div class="ser_fr col-md-6"><img src="images\ser4-1.jpg"><h3>服务流程、定期上门维护</h3><p>苏州君安铜门集团有限公司客户服务中心由一批具有丰富经验的铜结构工程师组成。专门从事客户服务工作，组成如下：<br>a.报修登记人员&amp;b.现场服务工&amp;c.技术支持工程师<br>d.技术顾问组&amp;e.定期上门维护</p></div><div class="ser_fl col-md-6"><img src="images\ser4-2.jpg" class="center-block img-responsive"></div></div>      </div>
+紧急事项如门关不上或打不开，收到通知后40分钟内出发，到现场完成客户提出的维修要求，如需更换配件或送修，我公司将在2个工作日内负责解决。</p></div></div><div class="ser"><div class="ser_fr col-md-6"><img src="images\ser4-1.jpg"><h3>服务流程、定期上门维护</h3><p>诸暨市金耐门业科技有限公司客户服务中心由一批具有丰富经验的铜结构工程师组成。专门从事客户服务工作，组成如下：<br>a.报修登记人员&amp;b.现场服务工&amp;c.技术支持工程师<br>d.技术顾问组&amp;e.定期上门维护</p></div><div class="ser_fl col-md-6"><img src="images\ser4-2.jpg" class="center-block img-responsive"></div></div>      </div>
     </div>
   </div>
 </div>
@@ -216,7 +189,7 @@ $(function(){
     <div class="container">
       <div class="footer3_fl col-md-6">
         <h3>公司简介</h3>
-        <p> 苏州君安铜门集团有限公司系一家注册于苏州国家高新技术产业开发区的股份制企业，公司由五家下属企业组成，占地面积50余亩，年生产规模达二万平方米，连续五年铜门全国销量列前。先后承接工程三千多项，曾参与多项国家重点工程建设。产品出口美国、英国、台湾等地．．． </p>
+        <p> 诸暨市金耐门业科技有限公司系一家注册于苏州国家高新技术产业开发区的股份制企业，公司由五家下属企业组成，占地面积50余亩，年生产规模达二万平方米，连续五年铜门全国销量列前。先后承接工程三千多项，曾参与多项国家重点工程建设。产品出口美国、英国、台湾等地．．． </p>
         <span><a href="about.html">+查看详情</a></span> </div>
       <div class="footer3_fc col-md-1"></div>
       <div class="footer3_fr col-md-5">
@@ -228,8 +201,8 @@ $(function(){
   </div>
   <div class="wow footer2 fadeInUp">
     <div class="container">
-      <p> 任何个人或单位未经许可不得复制转载转刊 本网站涉及内容最终归苏州君安铜门集团有限公司所有 请勿建立镜像<br>
-        Copyright © 2017 版权所有：苏州君安铜门集团有限公司  苏ICP备000000号-1  技术支持：云度科技 </p>
+      <p> 任何个人或单位未经许可不得复制转载转刊 本网站涉及内容最终归诸暨市金耐门业科技有限公司所有 请勿建立镜像<br>
+        Copyright © 2017 版权所有：诸暨市金耐门业科技有限公司  苏ICP备000000号-1  技术支持：云度科技 </p>
     </div>
   </div>
 </footer>

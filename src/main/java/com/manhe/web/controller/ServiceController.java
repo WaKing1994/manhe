@@ -20,6 +20,9 @@ public class ServiceController {
     public ModelAndView service() {
 
         ModelAndView mav = new ModelAndView("service/service");
+        List<ProductCategoryDO> productCategory = productCategoryService.find(null);
+        mav.addObject("productCategory", productCategory);
+
         return mav;
     }
 

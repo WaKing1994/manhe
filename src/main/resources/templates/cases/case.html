@@ -66,85 +66,58 @@ $(function(){
       <p class="tel">服务咨询热线：0512-65651818</p>
     </div>
   </div>
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-      <div class="container-fluid"> 
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a class="navbar-brand" href="default.html"><img src="images\logo.jpg" alt=""></a> </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav menu">
-            <li><a href="index.html">苏君首页<i></i></a></li>
-            <li><a href="about.html">走进君安<i></i></a>
-              <ul>
-                <li><a href="about.html">公司简介</a></li>
-                <li><a href="about-1.html?ID=73">公司荣誉</a></li>
-              	<li><a href="about-2.html?ID=74">生产设备</a></li>
-                <li><a href="about-3.html?ID=66">企业文化</a></li>
-                <li><a href="about-4.html?ID=67">友好往来</a></li>
-              </ul>
-            </li>
-            <li><a href="news.html">公司新闻<i></i></a></li>
-            <li><a href="product.html">产品展示<i></i></a>
-              <ul>
- 
-              <li><a href="product-1.html?ClassID=4#catpro_4">平开铜门系列</a></li>
- 
-              <li><a href="product-2.html?ClassID=5#catpro_5">平移铜门系列</a></li>
- 
-              <li><a href="product-3.html?ClassID=6#catpro_6">旋转铜门系列</a></li>
- 
-              <li><a href="product-4.html?ClassID=7#catpro_7">折叠铜门系列</a></li>
- 
-              <li><a href="product-5.html?ClassID=3#catpro_3">母子铜门系列</a></li>
- 
-              <li><a href="product-6.html?ClassID=1#catpro_1">门中套门铜门系列</a></li>
- 
-              <li><a href="product-7.html?ClassID=8#catpro_8">欧式铜门系列</a></li>
- 
-              <li><a href="product-8.html?ClassID=2#catpro_2">镂空玻璃铜门系列</a></li>
- 
-              <li><a href="product-9.html?ClassID=9#catpro_9">中式铜门系列</a></li>
- 
-              <li><a href="product-10.html?ClassID=10#catpro_10">时尚简约铜门系列</a></li>
- 
-              <li><a href="product-11.html?ClassID=11#catpro_11">铜壁画</a></li>
- 
-              <li><a href="product-12.html?ClassID=12#catpro_12">铜雨蓬</a></li>
- 
-              <li><a href="product-13.html?ClassID=13#catpro_13">铜装饰</a></li>
-              </ul>
-            </li>
-            <li><a href="case.html">典型工程<i></i></a></li>
-            <li><a href="service.html">客户服务<i></i></a>
-              <ul>
-          
-     <li><a href="service-1.html?ID=72">售后服务</a></li>
- 
-     <li><a href="service-2.html?ID=71">销售区域</a></li>
- 
-     <li><a href="service.php?ID=70">销售方式</a></li>
-              </ul>
-            </li>
-            <li><a href="login.html">公司内网<i></i></a></li>
-            <li><a href="contact.html">联系我们<i></i></a></li>
-          </ul>
-<script type="text/javascript">
-	$(document).ready(function () {
-		$('.menu li a').each(function () {
-				if ($($(this))[0].href == String(window.location))
-					$(this).addClass('current').attr('href', 'javascript:void(0);');
-			});
-		});
-</script> 
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand" href="/"><img src="images\logo.jpg" alt=""></a> </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav menu">
+                        <li><a href="/">曼赫首页<i></i></a></li>
+                        <li><a href="/about">走进曼赫<i></i></a>
+                            <ul>
+                                <li><a href="/about">公司简介</a></li>
+                                <li><a href="/about?type=honor">公司荣誉</a></li>
+                                <li><a href="/about?type=equipment">生产设备</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/news">公司新闻<i></i></a></li>
+                        <li><a href="/product" >产品展示<i></i></a>
+                            <ul>
+
+                                <li th:each="item : ${productCategory}"><a th:href="@{/product(categoryId=${item.id})}" th:text="${{item.name}}"></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/case">典型工程<i></i></a></li>
+                        <li><a href="/service">客户服务<i></i></a>
+                            <ul>
+
+                                <li><a href="/service">售后服务</a></li>
+
+                                <li><a href="/service?type=area">销售区域</a></li>
+
+                                <li><a href="/service?type=channel">销售方式</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/contact">联系我们<i></i></a></li>
+                    </ul>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('.menu li a').each(function () {
+                                if ($($(this))[0].href == String(window.location))
+                                    $(this).addClass('current').attr('href', 'javascript:void(0);');
+                            });
+                        });
+                    </script>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.navbar-collapse --> 
-      </div>
-      <!-- /.container-fluid --> 
-    </div>
-  </nav>
+    </nav>
   <!--nav结束-->
   <div class="clear"></div>
   <!--banner开始-->

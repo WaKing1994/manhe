@@ -7,6 +7,7 @@
     <sql id="allFields">
 		 id,
         `name`,
+        `details`,
         priority
     </sql>
 
@@ -17,15 +18,16 @@
     <!-- 插入 -->
     <insert id="insert" parameterType="com.manhe.dal.dataobject.ProductCategoryDO">
         INSERT INTO  <include refid="table"/>
-        (`name`,priority)
-        VALUES (#{name},#{priority})
+        (`name`,priority,`details`)
+        VALUES (#{name},#{priority},#{details})
     </insert>
 
     <update id="update" parameterType="com.manhe.dal.dataobject.ProductCategoryDO">
         update
         <include refid="table"/>
         SET `name` = #{name},
-        `priority` = #{priority}
+        `priority` = #{priority},
+        `details` = #{details}
         where id=#{id}
     </update>
 

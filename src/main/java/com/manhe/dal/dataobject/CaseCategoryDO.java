@@ -8,6 +8,7 @@ public class CaseCategoryDO implements Serializable {
     private Long id;
     private String name;
     private Integer priority;
+    private String details;
 
     public CaseCategoryDO() {
     }
@@ -34,5 +35,13 @@ public class CaseCategoryDO implements Serializable {
 
     public void setPriority(Integer priority) {
         this.priority = priority;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

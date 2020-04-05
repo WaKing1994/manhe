@@ -11,7 +11,8 @@
         details,
         banner,
         createTime,
-        viewCount
+        viewCount,
+        categoryId
     </sql>
 
     <sql id="table">
@@ -21,8 +22,8 @@
     <!-- 插入 -->
     <insert id="insert" parameterType="com.manhe.dal.dataobject.CaseDO">
         INSERT INTO  <include refid="table"/>
-        (`name`,priority,images,details,banner,createTime,viewCount)
-        VALUES (#{name},#{priority},#{images},#{details},#{banner},now(),#{viewCount})
+        (`name`,priority,images,details,banner,createTime,viewCount,categoryId)
+        VALUES (#{name},#{priority},#{images},#{details},#{banner},now(),#{viewCount},#{categoryId})
     </insert>
 
     <update id="update" parameterType="com.manhe.dal.dataobject.CaseDO">
@@ -32,7 +33,8 @@
         priority = #{priority},
         images = #{images},
         details = #{details},
-        banner = #{banner}
+        banner = #{banner},
+        categoryId = #{categoryId}
         where id=#{id}
     </update>
 
@@ -68,6 +70,9 @@
         </if>
         <if test="name != null and name != ''">
             AND `name` = #{name}
+        </if>
+        <if test="categoryId != null">
+            AND `categoryId` = #{categoryId}
         </if>
     </sql>
 

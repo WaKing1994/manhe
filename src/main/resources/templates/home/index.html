@@ -181,7 +181,7 @@ $(function(){
       <div class="mis-stage">
         <ol class="mis-slider">
           <li class="mis-slide" th:each="item : ${cases}">
-              <a th:href="${{item.name}}" th:title="${{item.name}}" class="mis-container">
+              <a th:href="@{/caseShow(caseId=${item.id})}" th:title="${{item.name}}" class="mis-container">
               <figure>
                   <div class="case_img"><img th:src="${{item.banner}}"></div>
                   <div class="case_txt">
@@ -234,11 +234,12 @@ $(function(){
         </div>
         <div class="wow col-md-6 fadeInRight news_fr">
           <ul>
-             <li th:each="item : ${news}"> <a href="newsshow.html?ID=106" th:title="${{item.name}}">
+             <li th:each="item : ${news}"> <a th:href="@{/newsShow(newsId=${item.id})}" th:title="${{item.name}}">
               <div class="col-md-3">
                 <div class="news_fr_date">
-                  <p>16</p>
-                  <span>2020-04</span> </div>
+                  <p th:text="${{item.day}}"></p>
+                  <span th:text="${{item.month}}"></span>
+                </div>
               </div>
               <div class="col-md-9">
                 <div class="news_fr_detail">
@@ -247,37 +248,10 @@ $(function(){
                 </div>
               </div>
               </a> </li>
-<!--                 <li> <a href="newsshow-1.html?ID=105" title="中央电视台《中国财经报道》主编任速雁采访本公司">-->
-<!--              <div class="col-md-3">-->
-<!--                <div class="news_fr_date">-->
-<!--                  <p>02</p>-->
-<!--                  <span>2004-11</span> </div>-->
-<!--              </div>-->
-<!--              <div class="col-md-9">-->
-<!--                <div class="news_fr_detail">-->
-<!--                  <h3>中央电视台《中国财经报道》主编任速雁采访本公司</h3>-->
-<!--                  <p> 2004年11月2日，中央电视台《中国财经报道》主编任速燕女士就制造...<span>[查看详情]</span></p>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              </a> </li>-->
-<!--                 <li> <a href="newsshow-2.html?ID=147" title="2017年8月20日公司承建的产值314万元的北京银行南昌分行大楼南北两樘铜门完工">-->
-<!--              <div class="col-md-3">-->
-<!--                <div class="news_fr_date">-->
-<!--                  <p>20</p>-->
-<!--                  <span>2017-08</span> </div>-->
-<!--              </div>-->
-<!--              <div class="col-md-9">-->
-<!--                <div class="news_fr_detail">-->
-<!--                  <h3>2017年8月20日公司承建的产值314万元的北京银行南昌分行大楼南北两樘铜门完工</h3>-->
-<!--                  <p>&lt;p&gt;2017年8月20日公司承建的产值314万元的北京银行南昌分行大楼南北...<span>[查看详情]</span></p>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              </a> </li>-->
-<!--                       -->
           </ul>
         </div>
       </div>
-      <div class="wow index_more fadeInUp" align="center"><a href="news.html">+MORE</a></div>
+      <div class="wow index_more fadeInUp" align="center"><a href="/news">+MORE</a></div>
     </div>
   </div>
 </div>

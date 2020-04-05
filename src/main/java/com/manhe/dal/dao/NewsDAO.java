@@ -1,6 +1,7 @@
 package com.manhe.dal.dao;
 
 import com.manhe.dal.dataobject.NewsDO;
+import com.manhe.dal.pageUtils.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,4 +20,5 @@ public interface NewsDAO {
 
     List<NewsDO> getListByMap(Map<String, Object> req);
 
+    List<NewsDO> getListByMap(Map<String, Object> req, PageInfo pageInfo);
 }

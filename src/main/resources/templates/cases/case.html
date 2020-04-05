@@ -170,7 +170,7 @@ $(function(){
           <ul>
  
             <li class="col-xs-12 col-sm-6 col-md-6" th:each="it : ${item.cases}"> <a th:href="@{/caseShow(caseId=${it.id})}">
-              <div class="icase_img"><img th:text="${{it.name}}" th:src="${{it.banner}}" alt=""></div>
+              <div class="icase_img"><img th:src="${{it.banner}}" alt=""></div>
               <div class="icase_txt">
                 <h3 th:text="${{it.name}}"></h3>
                  <p th:text="${{it.details}}"></p>

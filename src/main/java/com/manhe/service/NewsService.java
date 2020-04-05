@@ -1,6 +1,7 @@
 package com.manhe.service;
 
 import com.manhe.dal.dataobject.NewsDO;
+import com.manhe.dal.pageUtils.PageInfo;
 
 import java.util.List;
 import java.util.Map;
@@ -16,4 +17,5 @@ public interface NewsService {
 
     public List<NewsDO> find(Map req);
 
+    public List<NewsDO> page(Map req, PageInfo pageInfo);
 }

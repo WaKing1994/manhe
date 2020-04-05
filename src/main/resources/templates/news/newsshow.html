@@ -146,9 +146,13 @@ $(function(){
     <div class="container">
       <div class="inner_con_newsshow">
         <div class="show_title">
-          <h3>全国人大常委会前副委员长费孝通题词</h3>
-          <span>发布时间：2000-10-16</span> <span>浏览：408</span> </div>
-        <div class="show_content"> <p>&nbsp; &nbsp; &nbsp; &nbsp;2000年10月16日，时任全国人大常委会副委员长费孝通先生来苏州考察，期间多次与我公司董事们会谈，勉励公司以客户为重，诚信经营，做强做大企业，做出苏州人精细、讲究的特色。并为公司题词“立足用户”，合影留念。<br><br><br></p><p style="text-align: center"><img src="upload\20171110\1510293850340381.jpg" style="width: 772px; height: 449px;" title="董事合影.jpg" width="772" vspace="0" hspace="0" height="449" border="0"></p><p style="text-align: center"><img src="upload\20171110\1510293853121474.jpg" style="width: 769px; height: 337px;" title="费题词.jpg" width="769" vspace="0" hspace="0" height="337" border="0"></p><p><br></p> </div>
+          <h3 th:text="${{news.name}}"></h3>
+          <span th:text="'发布时间：'+${news.createTime}"></span>
+          <span th:text="'浏览人数：'+${news.viewCount}"></span>
+        <div class="show_content"> <p th:text="${{news.details}}"></p>
+          <p style="text-align: center">
+            <img th:src="${{news.images}}" style="width: 772px; height: 449px;" width="772" vspace="0" hspace="0" height="449" border="0"></p><p style="text-align: center">
+        </div>
         <div class="show_back"> <a href="javascript:history.go(-1);">【返回】</a> </div>
       </div>
     </div>

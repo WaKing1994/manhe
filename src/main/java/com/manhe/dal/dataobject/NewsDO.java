@@ -2,7 +2,9 @@ package com.manhe.dal.dataobject;
 
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class NewsDO implements Serializable {
 
@@ -14,6 +16,10 @@ public class NewsDO implements Serializable {
     private String banner;
     private Integer viewCount;
     private Date createTime;
+    //虚拟字段
+    private String day;
+    //虚拟字段
+    private String month;
 
     public NewsDO() {
     }
@@ -81,5 +87,30 @@ public class NewsDO implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getDay() {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(createTime);
+        Integer day = calendar.get(Calendar.DAY_OF_MONTH);
+        String dayStr = day < 10 ? "0" + day : day.toString();
+        return dayStr;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getMonth() {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(createTime);
+        Integer year = calendar.get(Calendar.YEAR);
+        Integer month = calendar.get(Calendar.MONTH) + 1;
+        String monthStr = month < 10 ? "0" + month : month.toString();
+        return year + "-" + monthStr;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 }

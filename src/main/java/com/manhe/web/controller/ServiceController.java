@@ -1,7 +1,6 @@
 package com.manhe.web.controller;
 
 import com.manhe.dal.dataobject.ProductCategoryDO;
-import com.manhe.dal.dataobject.ProductDO;
 import com.manhe.service.NewsService;
 import com.manhe.service.ProductCategoryService;
 import com.manhe.service.ProductService;
@@ -10,9 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class ServiceController {
@@ -25,7 +22,24 @@ public class ServiceController {
 
         return mav;
     }
+    @RequestMapping("/service1")
+    public ModelAndView service1() {
 
+        ModelAndView mav = new ModelAndView("service/service1");
+        List<ProductCategoryDO> productCategory = productCategoryService.find(null);
+        mav.addObject("productCategory", productCategory);
+
+        return mav;
+    }
+    @RequestMapping("/service2")
+    public ModelAndView service2() {
+
+        ModelAndView mav = new ModelAndView("service/service2");
+        List<ProductCategoryDO> productCategory = productCategoryService.find(null);
+        mav.addObject("productCategory", productCategory);
+
+        return mav;
+    }
     @Autowired
     private ProductService productService;
     @Autowired

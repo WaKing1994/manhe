@@ -23,7 +23,22 @@ public class AboutController {
         mav.addObject("productCategory", productCategory);
         return mav;
     }
+    @RequestMapping("/about1")
+    public ModelAndView about1(String type) {
+        ModelAndView mav = new ModelAndView("about/about1");
 
+        List<ProductCategoryDO> productCategory = productCategoryService.find(null);
+        mav.addObject("productCategory", productCategory);
+        return mav;
+    }
+    @RequestMapping("/about2")
+    public ModelAndView about2(String type) {
+        ModelAndView mav = new ModelAndView("about/about2");
+
+        List<ProductCategoryDO> productCategory = productCategoryService.find(null);
+        mav.addObject("productCategory", productCategory);
+        return mav;
+    }
     @Autowired
     private ProductService productService;
     @Autowired

@@ -1,11 +1,14 @@
 package com.manhe.web.controller;
 
+import com.manhe.dal.dataobject.ContactDO;
 import com.manhe.dal.dataobject.ProductCategoryDO;
 import com.manhe.service.NewsService;
 import com.manhe.service.ProductCategoryService;
 import com.manhe.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +25,11 @@ public class ContactController {
 
         return mav;
     }
+    @PostMapping("/contactSubmit")
+    public String contactSubmit() {
 
+        return "contact/contact";
+    }
     @Autowired
     private ProductService productService;
     @Autowired

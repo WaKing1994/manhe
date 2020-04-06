@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>诸暨市金耐门业科技有限公司</title>
+<meta name="keywords" content="诸暨市金耐门业科技有限公司 ">
+<meta name="description" content="诸暨市金耐门业科技有限公司 ">
+<meta name="Author" content="云度科技 www.clouddo.cn">
+<!-- Bootstrap -->
+<link href="css\bootstrap.min.css" rel="stylesheet">
+<link href="css\index.css" rel="stylesheet">
+<link href="css\animate.min.css" rel="stylesheet">
+<link href="css\banner.css" rel="stylesheet">
+<link href="css\owl.carousel.css" rel="stylesheet">
+<link href="css\owl.theme.css" rel="stylesheet">
+<link href="css\swiper.min.css" rel="stylesheet">
+<link href="css\jquery.fancybox.css" rel="stylesheet">
+<link href="css\slick.css" rel="stylesheet">
+<link href="css\mislider.css" rel="stylesheet">
+<link href="css\mislider-skin-cameo.css" rel="stylesheet">
+<!--[if lt IE 9]>
+	<script src="/js/html5shiv.min.js"></script>
+	<script src="/js/respond.min.js"></script>
+<![endif]-->
+<script src="js\jquery.min.js"></script>
+<script src="js\mislider.js"></script>
+<script src="js\swiper.min.js"></script>
+<script src="js\bootstrap.min.js"></script>
+<script src="js\common.js"></script>
+<script type="text/javascript">
+jQuery(function ($) {
+	var slider = $('.mis-stage').miSlider({
+		stageHeight: 400,
+		slidesOnStage: 5,
+		slidePosition: 'center',
+		slideStart: 'beg',
+		slideScaling: 100,
+		offsetV: 0,
+		centerV: true,
+		navButtonsOpacity: 1
+	});
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	$('.mis-stage li').mouseover(function(e) {
+        $(this).siblings().stop().fadeTo(500,0.7);
+    });
+	$('.mis-stage li').mouseout(function(e) {
+        $(this).siblings().stop().fadeTo(500,1);
+    });
+})
+</script>
+</head>
+
+<body>
+<!--nav开始-->
+
+<header class="inner">
+  <div class="wow top fadeInDown">
+    <div class="container">
+      <p class="mail"><a href="mailto:qq@12345678.com" target="_blank">企业邮箱</a></p>
+      <p class="tel">服务咨询热线： 0575-xxxxxxx</p>
+    </div>
+  </div>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a class="navbar-brand" href="/"><img src="images\logo.jpg" alt=""></a> </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav menu">
+            <li><a href="/">曼赫首页<i></i></a></li>
+            <li><a href="/about">走进曼赫<i></i></a>
+              <ul>
+                <li><a href="/about">公司简介</a></li>
+                <li><a href="/about1">公司荣誉</a></li>
+                <li><a href="/about2">生产设备</a></li>
+              </ul>
+            </li>
+            <li><a href="/news">公司新闻<i></i></a></li>
+            <li><a href="/product" >产品展示<i></i></a>
+              <ul>
+
+                <li th:each="item : ${productCategory}"><a th:href="@{/product(categoryId=${item.id})}" th:text="${{item.name}}"></a></li>
+              </ul>
+            </li>
+            <li><a href="/case">典型工程<i></i></a></li>
+            <li><a href="/service1">客户服务<i></i></a>
+              <ul>
+
+               <li><a href="/service1">售后服务</a></li>
+
+     <li><a href="/service2?type=area">销售区域</a></li>
+
+     <li><a href="/service?type=channel">销售方式</a></li>
+              </ul>
+            </li>
+            <li><a href="/contact">联系我们<i></i></a></li>
+          </ul>
+          <script type="text/javascript">
+            $(document).ready(function () {
+              $('.menu li a').each(function () {
+                if ($($(this))[0].href == String(window.location))
+                  $(this).addClass('current').attr('href', 'javascript:void(0);');
+              });
+            });
+          </script>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+  </nav>
+  <!--nav结束-->
+  <div class="clear"></div>
+  <!--banner开始-->
+  <div class="inner_banner">
+    <ul class="banner-uls">
+      <li class="banner-lis"><a href="#" style="background-image: url('images/contact_ban.jpg');"></a></li>
+    </ul>
+  </div>
+  <!--banner结束-->
+  <div class="clear"></div>
+</header>
+
+<!--主体开始-->
+<div class="inner_main">
+  <div class="wow inner_main_title fadeInDown">
+    <div class="container">
+      <div class="inner_title">
+        <p>走进曼赫</p>
+        <ul>
+          <li><a href="/about">公司简介<i></i></a></li>
+          <li><a href="/about1">公司荣誉<i></i></a></li>
+          <li><a href="/about2">生产设备<i></i></a></li>
+        </ul>
+         
+      </div>
+      <div class="inner_location">
+        <p>当前页面：<a href="/">首页</a> - 走进曼赫 - <span>生产设备</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="wow inner_main_con fadeInUp">
+    <div class="container">
+      <div class="inner_con_title">
+        <h3>生产设备</h3>
+      </div>
+      <div class="inner_con_about"><p style="text-align: center;"><img src="upload\20171025\1508922751537639.jpg" style="float:none;" title="3.jpg"></p><p style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp;美国进口激光切割机：采用射频激励的气体激光器，配备有全飞行光路，交换式的工作平台，大大提高了钣金加工速度；非接触式自动高度跟踪系统，可精确到进行测量、计算和控制，其加工精度可达正负0.03毫米；可在切割铜板时获得无氧化的切割表面，使加工出的工件更具美观性。该激光切割机可以实现12毫米厚板到薄板的任意切割，使工件达到完美状态。<img src="upload\20171025\1508922751918728.jpg" title="1.jpg">&nbsp; &nbsp; &nbsp; &nbsp;多共位冲床：是金属板加工生产能力高转塔共位数多达58个，配备自动上下料机，独特桥型框架，防止框架变形；液压式离合器和制动器，保证了高精度加工。</p><p style="text-align: center;"><img src="upload\20171025\1508922751118733.jpg" style="float:none;" title="2.jpg"></p><p style="text-align: center;">&nbsp; &nbsp; &nbsp;数控折弯机：具有精确的扰度自动补偿系统，具有大开口行程，使加工工件的范围更广泛，精度更高。<br><br></p><p style="text-align: center;"><img src="upload\20171103\1509683207140606.jpg" style="float:none;" title="01.jpg">&nbsp; &nbsp;&nbsp;<img src="upload\20171103\1509683208106378.jpg" style="float:none;" title="02.jpg"></p><br><p style="text-align: center;">盐雾实验室用于铜门表面质地检测，实验室能模拟自然界，海边等气候条件，对铜门表面进行抗老化程度测试。提高铜门表面处理质量，增强铜板表面长时间抗氧化。</p></div>
+    </div>
+  </div>
+</div>
+<!--主体结束-->
+<div class="clear"></div>
+<!--底部开始-->
+<footer>
+  <div class="wow footer1 fadeInUp">
+    <div class="container">
+      <div class="footer1_fl col-md-4">
+
+<!--        <img src="images\footlogo.png" alt="">-->
+      </div>
+      <div class="footer1_fr col-md-8">
+        <ul>
+          <li><a href="/">曼赫首页</a></li>
+          <li><a href="/about">走进曼赫</a></li>
+          <li><a href="/news">公司新闻</a></li>
+          <li><a href="/product">产品展示</a></li>
+          <li><a href="/case">典型工程</a></li>
+          <li><a href="/service1">客户服务</a></li>
+          <li><a href="/contact">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wow footer3 fadeInUp">
+    <div class="container">
+      <div class="footer3_fl col-md-6">
+        <h3>公司简介</h3>
+        <p> 诸暨市金耐门业科技有限公司系一家注册于诸暨国家高新技术产业开发区的股份制企业，公司由五家下属企业组成，占地面积50余亩，年生产规模达二万平方米，连续五年铜门全国销量列前。先后承接工程三千多项，曾参与多项国家重点工程建设。产品出口美国、英国、台湾等地．．． </p>
+        <span><a href="/about">+查看详情</a></span> </div>
+      <div class="footer3_fc col-md-1"></div>
+      <div class="footer3_fr col-md-5">
+        <h3>联系我们</h3>
+        <p> 电话： 0575-xxxxxxx&nbsp;&nbsp;&nbsp;&nbsp;传真： 0575-xxxxxxx&nbsp;&nbsp;&nbsp;&nbsp;邮编：312000<br>
+          邮箱：qq@12345678.com &nbsp;&nbsp;地址：浙江省绍兴市诸暨 </p>
+<!--        <img src="images\ewm.png" alt=""> -->
+      </div>
+    </div>
+  </div>
+  <div class="wow footer2 fadeInUp">
+    <div class="container">
+      <p> 任何个人或单位未经许可不得复制转载转刊 本网站涉及内容最终归诸暨市金耐门业科技有限公司所有  <br>
+        Copyright © 2020 版权所有：诸暨市金耐门业科技有限公司    </p>
+    </div>
+  </div>
+</footer>
+<!--底部结束-->
+
+
+
+<script type="text/javascript" src="js\wow.min.js"></script> 
+<script type="text/javascript">
+    new WOW().init();
+</script> 
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('.inner_title li a').each(function () {
+				if ($($(this))[0].href == String(window.location))
+					$(this).addClass('current').attr('href', 'javascript:void(0);');
+			});
+		})
+</script>
+</body>
+</html>

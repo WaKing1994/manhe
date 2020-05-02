@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/home/layout">
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+<link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+
+<div th:fragment="content">
+    <ul class="layui-tab-title">
+        <li lay-id="0" class="layui-this">产品分类列表</li>
+        <li lay-id="2" class="layui"><a href="/admin/productCategory/add">添加产品分类</a></li>
+    </ul>
+
+    <table class="layui-table" width="1200px">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>分类名称</th>
+            <th>描述</th>
+            <th>优先级</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="it:${productCategorys}">
+            <td class="listtd" th:text="${it.id}"></td>
+            <td class="listtd" th:text="${it.name}"></td>
+            <td class="listtd" th:text="${it.details}"></td>
+            <td class="listtd" th:text="${it.priority}"></td>
+            <td class="listtd">
+                <a class="layui-btn layui-btn-normal layui-btn-radius"
+                   th:href="@{/admin/productCategory/edit(id=${it.id})}">编辑</a>
+                <button th:onclick="'del('+${it.id}+')'" type="button"
+                        class="layui-btn layui-btn-danger layui-btn-radius">删除
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</html>
+
+<script>
+    function del(id){
+        layui.use('layer',function(){
+            var layer = layui.layer;
+            layer.msg('你确定删除么？', {
+                time: 2000 ,//2秒自动关闭
+                btn: ['确定', '取消'],
+                yes: function(index){
+                    console.log(id);
+                    $.ajax({
+                        url:"/admin/productCategory/delete",
+                        data:{'id':id},
+                        type:"Post",
+                        dataType:"json",
+                        success:function(data){
+                            location.reload(); //删除成功后再刷新
+                        },
+                        error:function(data){
+                            alert('错误',data);
+                            console.log(data);
+                        }
+                    });
+                    layer.close(index);
+                }
+            });
+        });
+    };
+</script>

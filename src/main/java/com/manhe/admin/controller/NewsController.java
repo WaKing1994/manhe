@@ -1,14 +1,13 @@
 package com.manhe.admin.controller;
 
 import com.manhe.common.Response;
-import com.manhe.dal.dataobject.ProductCategoryDO;
-import com.manhe.dal.dataobject.ProductDO;
+import com.manhe.dal.dataobject.CaseDO;
+import com.manhe.dal.dataobject.NewsDO;
+import com.manhe.service.CaseCategoryService;
+import com.manhe.service.CaseService;
 import com.manhe.service.NewsService;
-import com.manhe.service.ProductCategoryService;
-import com.manhe.service.ProductService;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,42 +18,38 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController("adminProductController")
-@RequestMapping("/admin/product")
-public class ProductController {
+@RestController("adminNewsController")
+@RequestMapping("/admin/news")
+public class NewsController {
     @RequestMapping("/list")
-    public ModelAndView product(Integer categoryId) {
-        Map<String, Object> param = new HashMap<>();
-        param.put("categoryId", categoryId);
-        List<ProductDO> productDOS = productService.find(param);
-        ModelAndView mav = new ModelAndView("admin/product/list");
-        mav.addObject("products", productDOS);
+    public ModelAndView list() {
+        List<NewsDO> newsDOS = newsService.find(null);
+        ModelAndView mav = new ModelAndView("admin/news/list");
+        mav.addObject("news", newsDOS);
         return mav;
     }
 
     @RequestMapping("/add")
     public ModelAndView add() {
-        List<ProductCategoryDO> productCategory = productCategoryService.find(null);
-        ModelAndView mav = new ModelAndView("admin/product/add");
-        mav.addObject("productCategory", productCategory);
+        ModelAndView mav = new ModelAndView("admin/news/add");
         return mav;
     }
 
     @PostMapping("/addSubmit")
     public Response addSubmit(@RequestBody Map<String, Object> param, @Ignore Response response) {
-      /**
-       * todo
-       * */
-       return response;
+        /**
+         * todo
+         * */
+        return response;
     }
 
     @RequestMapping("/edit")
     public ModelAndView edit(Long id) {
         Map<String, Object> param = new HashMap<>();
         param.put("id", id);
-        ProductDO productDO = productService.get(param);
-        ModelAndView mav = new ModelAndView("admin/product/edit");
-        mav.addObject("product", productDO);
+        NewsDO newsDO = newsService.get(param);
+        ModelAndView mav = new ModelAndView("admin/news/edit");
+        mav.addObject("news", newsDO);
         return mav;
     }
 
@@ -70,14 +65,16 @@ public class ProductController {
     public Response delete(Long id, @Ignore Response response) {
         Map<String, Object> param = new HashMap<>();
         param.put("id", id);
-        productService.delete(param);
+        newsService.delete(param);
         return response;
     }
 
+
     @Autowired
-    private ProductService productService;
+    private CaseCategoryService caseCategoryService;
     @Autowired
-    private ProductCategoryService productCategoryService;
+    private CaseService caseService;
     @Autowired
     private NewsService newsService;
+
 }

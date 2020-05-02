@@ -1,15 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> - 登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="js/plugins/layui/css/layui.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <script src="js/plugins/layui/layui.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/common.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/plugins/layui/lay/modules/carousel.js" charset="utf-8" type="text/javascript"></script>
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
 </head>
+
 <body>
-<h1>test manhe login</h1>
-<form method="post" th:action="@{/admin/loginVerify}">
-    <input type="text" id="name1" name="username" value="" />
-    <input type="text" id="name" name="password" value="" />
-    <input type="submit" value="提交" />
-</form>
+    <div class="layui-carousel video_mask" id="login_carousel" >
+        <div carousel-item>
+            <div class="carousel_div1"></div>
+            <div class="carousel_div2"></div>
+            <div class="carousel_div3"></div>
+        </div>
+        <div class="login layui-anim layui-anim-up">
+            <h1>manhe管理系统</h1>
+            <form class="layui-form" action="#" th:action="@{/admin/loginVerify}" method="post">
+                <div class="layui-form-item">
+                    <input type="text" name="num" lay-verify="required" placeholder="请输入帐号" autocomplete="off"  value="" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <input type="password" name="password" lay-verify="required" placeholder="请输入密码" autocomplete="off" value="" class="layui-input">
+                </div>
+
+                <button class="layui-btn login_btn" lay-submit="" lay-filter="login">登陆系统</button>
+            </form>
+
+        </div>
+
+    </div>
+
 </body>
+
 </html>
+<script>
+
+</script>

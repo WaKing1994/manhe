@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/home/layout">
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+<link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+
+<div th:fragment="content">
+    <ul class="layui-tab-title">
+        <li lay-id="0" class="layui-this">产品列表</li>
+        <li lay-id="2" class="layui"><a href="/admin/product/add">添加产品</a></li>
+    </ul>
+
+    <table class="layui-table" width="1200px">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>名称</th>
+            <th>描述</th>
+            <th>图片</th>
+            <th>优先级</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="it:${products}">
+            <td class="listtd" th:text="${it.id}"></td>
+            <td class="listtd" th:text="${it.name}"></td>
+            <td class="listtd" th:text="${it.details}"></td>
+            <td class="listtd"><img th:src="${{it.banner}}"></td>
+            <td class="listtd" th:text="${it.priority}"></td>
+            <td class="listtd">
+                <a class="layui-btn layui-btn-normal layui-btn-radius"
+                   th:href="@{/admin/product/edit(id=${it.id})}">编辑</a>
+                <button th:attr="del_uri=@{/admin/product/delete(id=${it.id})}" type="button"
+                        class="layui-btn layui-btn-danger layui-btn-radius">删除
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</html>
+
+<script>
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            , url: 'https://httpbin.org/post' //改成您自己的上传接口
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+
+    });
+</script>

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>test manhe admin web</h1>
-</body>
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/home/layout">
+<div th:fragment="content">
+    <ul class="layui-tab-title">
+
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <h3>欢迎进入后台管理！</h3>
+        </div>
+    </div>
+
+</div>
 </html>

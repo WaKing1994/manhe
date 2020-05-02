@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/home/layout">
+<div th:fragment="content">
+    <ul class="layui-tab-title">
+        <li lay-id="0" class="layui-this">产品列表</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>名称</th>
+                    <th>描述</th>
+                    <th>图片</th>
+                    <th>优先级</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="it:${products}">
+                    <td th:text="${it.id}"></td>
+                    <td th:text="${it.name}"></td>
+                    <td th:text="${it.details}"></td>
+                    <td th:text="${it.banner}"></td>
+                    <td th:text="${it.priority}"></td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" th:href="@{/admin/product/edit(id=${it.id})}">编辑</a>
+                        <button th:attr="del_uri=@{/admin/product/delete(id=${it.id})}" class="btn btn-sm btn-danger deleteBtn">删除
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>

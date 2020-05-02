@@ -18,7 +18,7 @@ import java.util.Map;
 public class LoginController {
     @GetMapping("/admin/login")
     public String login() {
-        return "/admin/login";
+        return "admin/login";
     }
 
     @PostMapping("/admin/loginVerify")
@@ -33,9 +33,9 @@ public class LoginController {
         if (adminDO != null) {
             session = request.getSession(true);
             session.setAttribute("user", adminDO);
-            return "/admin/home/index";
+            return "admin/home/index";
         } else {
-            return "redirect:/admin/login";
+            return "redirect:admin/login";
         }
 
     }

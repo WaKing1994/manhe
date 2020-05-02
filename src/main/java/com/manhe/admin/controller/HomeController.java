@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @GetMapping("/index")
     public String login() {
-        return "/admin/home/index";
+        return "admin/home/index";
     }
 }

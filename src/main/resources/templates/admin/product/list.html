@@ -32,7 +32,7 @@
             <td class="listtd">
                 <a class="layui-btn layui-btn-normal layui-btn-radius"
                    th:href="@{/admin/product/edit(id=${it.id})}">编辑</a>
-                <button th:attr="del_uri=@{/admin/product/delete(id=${it.id})}" type="button"
+                <button th:onclick="'del('+${it.id}+')'" type="button"
                         class="layui-btn layui-btn-danger layui-btn-radius">删除
                 </button>
             </td>
@@ -44,36 +44,30 @@
 </html>
 
 <script>
-    layui.use('upload', function () {
-        var $ = layui.jquery
-            , upload = layui.upload;
-
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#test1'
-            , url: 'https://httpbin.org/post' //改成您自己的上传接口
-            , before: function (obj) {
-                //预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#demo1').attr('src', result); //图片链接（base64）
-                });
-            }
-            , done: function (res) {
-                //如果上传失败
-                if (res.code > 0) {
-                    return layer.msg('上传失败');
+    function del(id){
+        layui.use('layer',function(){
+            var layer = layui.layer;
+            layer.msg('你确定删除么？', {
+                time: 2000 ,//2秒自动关闭
+                btn: ['确定', '取消'],
+                yes: function(index){
+                    console.log(id);
+                    $.ajax({
+                        url:"/admin/product/delete",
+                        data:{'id':id},
+                        type:"Post",
+                        dataType:"json",
+                        success:function(data){
+                            location.reload(); //删除成功后再刷新
+                        },
+                        error:function(data){
+                            alert('错误',data);
+                            console.log(data);
+                        }
+                    });
+                    layer.close(index);
                 }
-                //上传成功
-            }
-            , error: function () {
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function () {
-                    uploadInst.upload();
-                });
-            }
+            });
         });
-
-    });
+    };
 </script>

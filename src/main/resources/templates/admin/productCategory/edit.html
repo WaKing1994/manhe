@@ -14,6 +14,7 @@
                 <legend>产品编辑</legend>
             </fieldset>
             <form class="layui-form">
+                <input name="id"  class="layui-input" type="hidden" th:value="${productCategory.id}" />
                 <div class="layui-form-item">
                     <label class="layui-form-label">分类名称</label>
                     <div class="layui-input-block">
@@ -31,7 +32,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">优先级</label>
                     <div class="layui-input-block">
-                        <input type="text" name="priority" lay-verify="title" autocomplete="off" placeholder="优先级" th:value="${productCategory.priority}"
+                        <input type="text" name="priority" lay-verify="required" autocomplete="off" placeholder="优先级" th:value="${productCategory.priority}"
                                class="layui-input">
                     </div>
                 </div>
@@ -89,7 +90,8 @@
                 data: JSON.stringify(data),
                 success: function (data) {
                     if (data) {
-                        layer.alert("提交成功！")
+                        layer.alert("提交成功！");
+                        location.reload(); //删除成功后再刷新
                     } else {
                         layer.alert("提交失败！")
                     }

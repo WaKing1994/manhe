@@ -38,9 +38,15 @@ public class ProductCategoryController {
 
     @PostMapping("/addSubmit")
     public Response addSubmit(@RequestBody Map<String, Object> param, @Ignore Response response) {
-        /**
-         * todo
-         * */
+        Map<String, Object> req = (HashMap) param.get("field");
+        String name = req.get("name").toString();
+        String details = req.get("details").toString();
+        Integer priority = Integer.valueOf(req.get("priority").toString());
+        ProductCategoryDO productCategoryDO = new ProductCategoryDO();
+        productCategoryDO.setName(name);
+        productCategoryDO.setDetails(details);
+        productCategoryDO.setPriority(priority);
+        productCategoryService.insert(productCategoryDO);
         return response;
     }
 
@@ -56,9 +62,17 @@ public class ProductCategoryController {
 
     @PostMapping("/editSubmit")
     public Response editSubmit(@RequestBody Map<String, Object> param, @Ignore Response response) {
-        /**
-         * todo
-         * */
+        Map<String, Object> req = (HashMap) param.get("field");
+        Long id = Long.valueOf(req.get("id").toString());
+        String name = req.get("name").toString();
+        String details = req.get("details").toString();
+        Integer priority = Integer.valueOf(req.get("priority").toString());
+        ProductCategoryDO productCategoryDO = new ProductCategoryDO();
+        productCategoryDO.setId(id);
+        productCategoryDO.setName(name);
+        productCategoryDO.setDetails(details);
+        productCategoryDO.setPriority(priority);
+        productCategoryService.update(productCategoryDO);
         return response;
     }
 

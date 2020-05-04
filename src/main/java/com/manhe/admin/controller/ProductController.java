@@ -42,10 +42,20 @@ public class ProductController {
 
     @PostMapping("/addSubmit")
     public Response addSubmit(@RequestBody Map<String, Object> param, @Ignore Response response) {
-      /**
-       * todo
-       * */
-       return response;
+        Map<String, Object> req = (HashMap) param.get("field");
+        String name = req.get("name").toString();
+        Long categoryId = Long.valueOf(req.get("categoryId").toString());
+        String details = req.get("details").toString();
+        Integer priority = Integer.valueOf(req.get("priority").toString());
+        String banner = req.get("banner").toString();
+        ProductDO productDO = new ProductDO();
+        productDO.setName(name);
+        productDO.setCategoryId(categoryId);
+        productDO.setDetails(details);
+        productDO.setPriority(priority);
+        productDO.setBanner(banner);
+        productService.insert(productDO);
+        return response;
     }
 
     @RequestMapping("/edit")
@@ -53,16 +63,31 @@ public class ProductController {
         Map<String, Object> param = new HashMap<>();
         param.put("id", id);
         ProductDO productDO = productService.get(param);
+        List<ProductCategoryDO> productCategory = productCategoryService.find(null);
         ModelAndView mav = new ModelAndView("admin/product/edit");
+
+        mav.addObject("productCategory", productCategory);
         mav.addObject("product", productDO);
         return mav;
     }
 
     @PostMapping("/editSubmit")
     public Response editSubmit(@RequestBody Map<String, Object> param, @Ignore Response response) {
-        /**
-         * todo
-         * */
+        Map<String, Object> req = (HashMap) param.get("field");
+        Long id = Long.valueOf(req.get("id").toString());
+        String name = req.get("name").toString();
+        Long categoryId = Long.valueOf(req.get("categoryId").toString());
+        String details = req.get("details").toString();
+        Integer priority = Integer.valueOf(req.get("priority").toString());
+        String banner = req.get("banner").toString();
+        ProductDO productDO = new ProductDO();
+        productDO.setId(id);
+        productDO.setName(name);
+        productDO.setCategoryId(categoryId);
+        productDO.setDetails(details);
+        productDO.setPriority(priority);
+        productDO.setBanner(banner);
+        productService.update(productDO);
         return response;
     }
 

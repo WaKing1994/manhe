@@ -1,5 +1,7 @@
 package com.manhe.admin.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.manhe.common.Response;
 import com.manhe.dal.dataobject.CaseCategoryDO;
 import com.manhe.dal.dataobject.ProductCategoryDO;
@@ -37,9 +39,16 @@ public class CaseCategoryController {
 
     @PostMapping("/addSubmit")
     public Response addSubmit(@RequestBody Map<String, Object> param, @Ignore Response response) {
-        /**
-         * todo
-         * */
+        //JSONObject field = (JSONObject) param.get("field");
+        Map<String, Object> req = (HashMap) param.get("field");
+        String name = req.get("name").toString();
+        String details = req.get("details").toString();
+        Integer priority = Integer.valueOf(req.get("priority").toString());
+        CaseCategoryDO caseCategoryDO = new CaseCategoryDO();
+        caseCategoryDO.setName(name);
+        caseCategoryDO.setDetails(details);
+        caseCategoryDO.setPriority(priority);
+        caseCategoryService.insert(caseCategoryDO);
         return response;
     }
 
@@ -55,9 +64,17 @@ public class CaseCategoryController {
 
     @PostMapping("/editSubmit")
     public Response editSubmit(@RequestBody Map<String, Object> param, @Ignore Response response) {
-        /**
-         * todo
-         * */
+        Map<String, Object> req = (HashMap) param.get("field");
+        Long id = Long.valueOf(req.get("id").toString());
+        String name = req.get("name").toString();
+        String details = req.get("details").toString();
+        Integer priority = Integer.valueOf(req.get("priority").toString());
+        CaseCategoryDO caseCategoryDO = new CaseCategoryDO();
+        caseCategoryDO.setId(id);
+        caseCategoryDO.setName(name);
+        caseCategoryDO.setDetails(details);
+        caseCategoryDO.setPriority(priority);
+        caseCategoryService.update(caseCategoryDO);
         return response;
     }
 

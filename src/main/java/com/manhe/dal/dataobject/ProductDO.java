@@ -11,8 +11,17 @@ public class ProductDO implements Serializable {
     private String imageUrl;
     private String details;
     private String banner;
+    private Long categoryId;
 
     public ProductDO() {
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Long getId() {

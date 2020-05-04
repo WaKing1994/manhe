@@ -88,7 +88,8 @@
                 data: JSON.stringify(data),
                 success: function (data) {
                     if (data) {
-                        layer.alert("提交成功！")
+                        layer.alert("提交成功！");
+                        location.reload(); //删除成功后再刷新
                     } else {
                         layer.alert("提交失败！")
                     }

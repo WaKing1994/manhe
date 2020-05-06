@@ -10,33 +10,33 @@
         <li lay-id="0" class="layui-this">客户联系</li>
     </ul>
 
-    <table class="layui-table" width="1200px">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>客户称呼</th>
-            <th>联系方式</th>
-            <th>所在城市</th>
-            <th>需求内容</th>
-            <th>创建时间</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="it:${contacts}">
-            <td class="listtd" th:text="${it.id}"></td>
-            <td class="listtd" th:text="${it.nickName}"></td>
-            <td class="listtd" th:text="${it.mobile}"></td>
-            <td class="listtd" th:text="${it.area}"></td>
-            <td class="listtd" th:text="${it.context}"></td>
-            <td class="listtd" th:text="${it.createTime}"></td>
-        </tr>
-        </tbody>
-    </table>
-
+<!--    <table class="layui-table" width="1200px">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>#</th>-->
+<!--            <th>客户称呼</th>-->
+<!--            <th>联系方式</th>-->
+<!--            <th>所在城市</th>-->
+<!--            <th>需求内容</th>-->
+<!--            <th>创建时间</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="it:${contacts}">-->
+<!--            <td class="listtd" th:text="${it.id}"></td>-->
+<!--            <td class="listtd" th:text="${it.nickName}"></td>-->
+<!--            <td class="listtd" th:text="${it.mobile}"></td>-->
+<!--            <td class="listtd" th:text="${it.area}"></td>-->
+<!--            <td class="listtd" th:text="${it.context}"></td>-->
+<!--            <td class="listtd" th:text="${it.createTime}"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+    <table class="layui-table" id="tableList"></table>
 </div>
 </html>
 
-<script>
+<script th:inline="none">
     function del(id){
         layui.use('layer',function(){
             var layer = layui.layer;
@@ -63,4 +63,37 @@
             });
         });
     };
+    layui.use(['table'], function(){
+        var table = layui.table;//使用数据表格
+
+        table.render({
+            elem: '#tableList',//选择html中对应的数据表格ID
+            url:'/admin/contact/list2',//分页提交到spring boot 代码的映射名称
+            method:'POST',
+            limit:10,//每页显示的记录数量
+            limits:[5,8,10,15,20],//可选择每页显示的数量
+            page: true,//开启分页
+
+            //设置表头的数组
+            //field：后台传回的数字字段名，
+            //title：表头文字
+            //templet: function(data){} 数据表格请求后台回调函数，处理数据
+            //return  表示在对应的列中输出的内容
+            cols: [[
+                {field:'id',width:60,title:'ID'},
+                {field:'nickName', title:'客户称呼'},
+                {field:'mobile',title:'联系方式'},
+                {field:'area',title:'所在城市'},
+                {field:'context',title:'需求内容'},
+                {field:'createTime',title:'创建时间'}
+            ]],
+            done:function(res, curr, count){
+                console.log("表格渲染完成：");
+                console.log(res);
+                console.log(curr);
+                console.log(count);
+            }
+
+        });
+    });
 </script>

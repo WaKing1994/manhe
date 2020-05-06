@@ -44,7 +44,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<NewsDO> page(Map req, PageInfo pageInfo) {
+    public List<NewsDO> find(Map req, PageInfo pageInfo) {
         return dao.getListByMap(req, pageInfo);
     }
 }

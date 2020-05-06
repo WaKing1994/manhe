@@ -3,10 +3,12 @@ package com.manhe.admin.controller;
 import com.manhe.common.Response;
 import com.manhe.dal.dataobject.ProductCategoryDO;
 import com.manhe.dal.dataobject.ProductDO;
+import com.manhe.dal.pageUtils.PageInfo;
 import com.manhe.service.NewsService;
 import com.manhe.service.ProductCategoryService;
 import com.manhe.service.ProductService;
 import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +32,19 @@ public class ProductCategoryController {
         return mav;
     }
 
+    @PostMapping("/list2")
+    public Map<String,Object> list(@Param("limits") Integer limits, @Param("page") Integer page, @Ignore Response response) {
+        PageInfo pageInfo = PageInfo.genPageInfoPage(page == null ? 1 : page, limits == null ? 10 : limits);
+        List<ProductCategoryDO> productCategoryDOS = productCategoryService.find(null, pageInfo);
+        Map<String,Object> resultMap = new HashMap<String, Object>();
+
+        resultMap.put("code",0);
+        resultMap.put("msg","");
+        resultMap.put("count",pageInfo.getTotalCount());
+        resultMap.put("data",productCategoryDOS);
+
+        return resultMap;
+    }
     @RequestMapping("/add")
     public ModelAndView add() {
         ModelAndView mav = new ModelAndView("admin/productCategory/add");

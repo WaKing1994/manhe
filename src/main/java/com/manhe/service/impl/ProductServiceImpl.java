@@ -2,6 +2,7 @@ package com.manhe.service.impl;
 
 import com.manhe.dal.dao.ProductDAO;
 import com.manhe.dal.dataobject.ProductDO;
+import com.manhe.dal.pageUtils.PageInfo;
 import com.manhe.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDO> find(Map req) {
         return dao.getListByMap(req);
+    }
+
+    @Override
+    public List<ProductDO> find(Map req, PageInfo pageInfo) {
+        return dao.getListByMap(req, pageInfo);
     }
 }

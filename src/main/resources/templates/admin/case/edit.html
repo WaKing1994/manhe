@@ -14,6 +14,7 @@
                 <legend>工程编辑</legend>
             </fieldset>
             <form class="layui-form">
+                <input name="id"  class="layui-input" type="hidden" th:value="${case.id}" />
                 <div class="layui-form-item">
                     <label class="layui-form-label">工程名称</label>
                     <div class="layui-input-block">
@@ -21,7 +22,15 @@
                                th:value="${case.name}" class="layui-input">
                     </div>
                 </div>
-
+                <div class="layui-form-item">
+                    <label class="layui-form-label">工程分类</label>
+                    <div class="layui-input-inline">
+                        <select name="categoryId" lay-filter="fenlei">
+                            <option value=""></option>
+                            <option th:each="it:${caseCategory}"  th:selected="${case.categoryId == it.id}" th:value="${it.id}" th:text="${it.name}"></option>
+                        </select>
+                    </div>
+                </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">
@@ -35,7 +44,22 @@
                                class="layui-input">
                     </div>
                 </div>
-
+                <div class="layui-form-item">
+                    <label class="layui-form-label">浏览数</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="viewCount" lay-verify="title" autocomplete="off" placeholder="浏览数" th:value="${case.viewCount}"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="test1">上传图片</button>
+                    <input  class="layui-input" type="hidden" id="banner" name="banner" th:value="${case.banner}"/>
+                    <input class="layui-upload-file" type="file" accept="" >
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" id="demo1" th:src="${case.banner}">
+                        <p id="demoText"></p>
+                    </div>
+                </div>
                 <button lay-submit class="layui-btn" lay-filter="editCase">立即提交</button>
             </form>
         </div>
@@ -79,6 +103,7 @@
     });
     layui.use(['form'], function () {
         var form = layui.form;
+        form.render('select','fenlei');
         form.on('submit(editCase)', function (data) {
 
             $.ajax({
@@ -89,7 +114,9 @@
                 data: JSON.stringify(data),
                 success: function (data) {
                     if (data) {
-                        layer.alert("提交成功！")
+                        layer.alert("提交成功！");
+
+                        window.location=("/admin/caseCategory/list");
                     } else {
                         layer.alert("提交失败！")
                     }
@@ -100,5 +127,6 @@
             })
             return false;
         });
+        form.render();
     });
 </script>

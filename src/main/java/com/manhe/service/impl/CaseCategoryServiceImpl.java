@@ -2,6 +2,7 @@ package com.manhe.service.impl;
 
 import com.manhe.dal.dao.CaseCategoryDAO;
 import com.manhe.dal.dataobject.CaseCategoryDO;
+import com.manhe.dal.pageUtils.PageInfo;
 import com.manhe.service.CaseCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,10 @@ public class CaseCategoryServiceImpl implements CaseCategoryService {
     @Override
     public List<CaseCategoryDO> find(Map req) {
         return dao.getListByMap(req);
+    }
+
+    @Override
+    public List<CaseCategoryDO> find(Map req, PageInfo pageInfo) {
+        return dao.getListByMap(req, pageInfo);
     }
 }

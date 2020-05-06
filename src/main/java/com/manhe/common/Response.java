@@ -17,7 +17,6 @@ public class Response implements Serializable {
     private Boolean success;
     private Object data;
     private Integer totalCounts;
-
     public Response() {
         this.code = "200";
         this.message = null;

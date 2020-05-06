@@ -34,7 +34,8 @@
         images = #{images},
         details = #{details},
         banner = #{banner},
-        categoryId = #{categoryId}
+        categoryId = #{categoryId},
+        viewCount = #{viewCount}
         where id=#{id}
     </update>
 

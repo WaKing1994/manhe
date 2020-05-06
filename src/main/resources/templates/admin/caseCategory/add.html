@@ -89,7 +89,8 @@
                 success: function (data) {
                     if (data) {
                         layer.alert("提交成功！");
-                        location.reload();
+
+                        window.location=("/admin/case/list");
                     } else {
                         layer.alert("提交失败！");
                     }

@@ -14,8 +14,17 @@ public class CaseDO implements Serializable {
     private String banner;
     private Date createTime;
     private Integer viewCount;
+    private Long categoryId;
 
     public CaseDO() {
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Long getId() {

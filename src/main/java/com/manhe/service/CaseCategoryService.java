@@ -1,6 +1,7 @@
 package com.manhe.service;
 
 import com.manhe.dal.dataobject.CaseCategoryDO;
+import com.manhe.dal.pageUtils.PageInfo;
 
 import java.util.List;
 import java.util.Map;
@@ -16,4 +17,5 @@ public interface CaseCategoryService {
 
     public List<CaseCategoryDO> find(Map req);
 
+    public List<CaseCategoryDO> find(Map req, PageInfo pageInfo);
 }

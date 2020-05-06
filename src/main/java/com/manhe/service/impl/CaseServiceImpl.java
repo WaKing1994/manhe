@@ -2,6 +2,7 @@ package com.manhe.service.impl;
 
 import com.manhe.dal.dao.CaseDAO;
 import com.manhe.dal.dataobject.CaseDO;
+import com.manhe.dal.pageUtils.PageInfo;
 import com.manhe.service.CaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,10 @@ public class CaseServiceImpl implements CaseService {
     @Override
     public List<CaseDO> find(Map req) {
         return dao.getListByMap(req);
+    }
+
+    @Override
+    public List<CaseDO> find(Map req, PageInfo pageInfo) {
+        return dao.getListByMap(req, pageInfo);
     }
 }

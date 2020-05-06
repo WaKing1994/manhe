@@ -89,7 +89,7 @@
                 success: function (data) {
                     if (data) {
                         layer.alert("提交成功！");
-                        location.reload(); //删除成功后再刷新
+                        window.location=("/admin/productCategory/list");
                     } else {
                         layer.alert("提交失败！")
                     }

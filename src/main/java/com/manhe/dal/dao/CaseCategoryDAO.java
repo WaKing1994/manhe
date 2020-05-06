@@ -1,6 +1,7 @@
 package com.manhe.dal.dao;
 
 import com.manhe.dal.dataobject.CaseCategoryDO;
+import com.manhe.dal.pageUtils.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,4 +20,5 @@ public interface CaseCategoryDAO {
 
     List<CaseCategoryDO> getListByMap(Map<String, Object> req);
 
+    List<CaseCategoryDO> getListByMap(Map<String, Object> req, PageInfo pageInfo);
 }

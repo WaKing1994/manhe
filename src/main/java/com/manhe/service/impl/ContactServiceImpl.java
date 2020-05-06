@@ -2,6 +2,7 @@ package com.manhe.service.impl;
 
 import com.manhe.dal.dao.ContactDAO;
 import com.manhe.dal.dataobject.ContactDO;
+import com.manhe.dal.pageUtils.PageInfo;
 import com.manhe.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,10 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public List<ContactDO> find(Map req) {
         return dao.getListByMap(req);
+    }
+
+    @Override
+    public List<ContactDO> find(Map req, PageInfo pageInfo) {
+        return dao.getListByMap(req, pageInfo);
     }
 }

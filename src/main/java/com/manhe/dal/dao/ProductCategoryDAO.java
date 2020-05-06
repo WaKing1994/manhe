@@ -2,6 +2,7 @@ package com.manhe.dal.dao;
 
 import com.manhe.dal.dataobject.ProductCategoryDO;
 import com.manhe.dal.dataobject.ProductDO;
+import com.manhe.dal.pageUtils.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,4 +21,5 @@ public interface ProductCategoryDAO {
 
     List<ProductCategoryDO> getListByMap(Map<String, Object> req);
 
+    List<ProductCategoryDO> getListByMap(Map<String, Object> req, PageInfo pageInfo);
 }

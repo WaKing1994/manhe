@@ -1,49 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       th:replace="admin/home/layout">
-<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-<link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
-
 <div th:fragment="content">
     <ul class="layui-tab-title">
         <li lay-id="0" class="layui-this">产品列表</li>
         <li lay-id="2" class="layui"><a href="/admin/product/add">添加产品</a></li>
     </ul>
-
-    <table class="layui-table" width="1200px">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>名称</th>
-            <th>描述</th>
-            <th>图片</th>
-            <th>优先级</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="it:${products}">
-            <td class="listtd" th:text="${it.id}"></td>
-            <td class="listtd" th:text="${it.name}"></td>
-            <td class="listtd" th:text="${it.details}"></td>
-            <td class="listtd"><img th:src="${{it.banner}}"></td>
-            <td class="listtd" th:text="${it.priority}"></td>
-            <td class="listtd">
-                <a class="layui-btn layui-btn-normal layui-btn-radius"
-                   th:href="@{/admin/product/edit(id=${it.id})}">编辑</a>
-                <button th:onclick="'del('+${it.id}+')'" type="button"
-                        class="layui-btn layui-btn-danger layui-btn-radius">删除
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
+    <table class="layui-table" id="productList"></table>
 </div>
 </html>
 
-<script>
+<script th:inline="none">
     function del(id){
         layui.use('layer',function(){
             var layer = layui.layer;
@@ -70,4 +37,47 @@
             });
         });
     };
+    layui.use(['table'], function(){
+        var table = layui.table;//使用数据表格
+
+        table.render({
+            elem: '#productList',//选择html中对应的数据表格ID
+            url:'/admin/product/list2',//分页提交到spring boot 代码的映射名称
+            method:'POST',
+            limit:10,//每页显示的记录数量
+            limits:[5,8,10,15,20],//可选择每页显示的数量
+            page: true,//开启分页
+
+            //设置表头的数组
+            //field：后台传回的数字字段名，
+            //title：表头文字
+            //templet: function(data){} 数据表格请求后台回调函数，处理数据
+            //return  表示在对应的列中输出的内容
+            cols: [[
+                {field:'id',width:60,title:'ID'},
+                {field:'name', title:'产品名称'},
+                {field:'details',title:'描述'},
+                {field:'banner',title:'图片',templet:"#imgtmp"},
+                {field:'priority',title:'优先级'},
+                {title:'编辑',width:80,templet:"#editButton"},
+                {title:'删除',width:80,templet:"#delButton"}
+            ]],
+            done:function(res, curr, count){
+                console.log("表格渲染完成：");
+                console.log(res);
+                console.log(curr);
+                console.log(count);
+            }
+
+        });
+    });
+</script>
+<script type="text/html" id="imgtmp">
+    <img src="{{d.banner}}">
+</script>
+<script type="text/html" id="editButton">
+    <a href='/admin/product/edit?id={{d.id}}' title='编辑' class='layui-btn layui-btn-xs layui-btn-normal'><icon class='layui-icon'>&#xe642;</icon></a>
+</script>
+<script type="text/html" id="delButton">
+    <button  onclik="del({{d.id}})" title='删除' class='layui-btn layui-bg-red layui-btn-xs layui-btn-normal'><icon class='layui-icon'>&#xe640;</icon></button>
 </script>

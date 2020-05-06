@@ -17,5 +17,5 @@ public interface NewsService {
 
     public List<NewsDO> find(Map req);
 
-    public List<NewsDO> page(Map req, PageInfo pageInfo);
+    public List<NewsDO> find(Map req, PageInfo pageInfo);
 }

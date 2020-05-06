@@ -1,6 +1,7 @@
 package com.manhe.dal.dao;
 
 import com.manhe.dal.dataobject.CaseDO;
+import com.manhe.dal.pageUtils.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -18,5 +19,7 @@ public interface CaseDAO {
     CaseDO get(Map<String, Object> params);
 
     List<CaseDO> getListByMap(Map<String, Object> req);
+
+    List<CaseDO> getListByMap(Map<String, Object> req, PageInfo pageInfo);
 
 }

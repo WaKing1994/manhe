@@ -14,8 +14,9 @@
                 <legend>新闻编辑</legend>
             </fieldset>
             <form class="layui-form">
+                <input name="id"  class="layui-input" type="hidden" th:value="${news.id}" />
                 <div class="layui-form-item">
-                    <label class="layui-form-label">分类名称</label>
+                    <label class="layui-form-label">新闻标题</label>
                     <div class="layui-input-block">
                         <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="新闻名称"
                                th:value="${news.name}" class="layui-input">
@@ -23,7 +24,7 @@
                 </div>
 
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">描述</label>
+                    <label class="layui-form-label">内容描述</label>
                     <div class="layui-input-block">
                         <textarea  th:text="${news.details}" name="details" placeholder="请输入内容" class="layui-textarea"></textarea>
                     </div>
@@ -35,8 +36,23 @@
                                class="layui-input">
                     </div>
                 </div>
-
-                <button lay-submit class="layui-btn" lay-filter="editProductCategory">立即提交</button>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">浏览数</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="viewCount" lay-verify="title" autocomplete="off" placeholder="浏览数" th:value="${news.viewCount}"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="test1">上传图片</button>
+                    <input  class="layui-input" type="hidden" id="banner" name="banner" th:value="${news.banner}"/>
+                    <input class="layui-upload-file" type="file" accept="" >
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" id="demo1" th:src="${news.banner}">
+                        <p id="demoText"></p>
+                    </div>
+                </div>
+                <button lay-submit class="layui-btn" lay-filter="editNews">立即提交</button>
             </form>
         </div>
     </div>
@@ -79,7 +95,7 @@
     });
     layui.use(['form'], function () {
         var form = layui.form;
-        form.on('submit(editProductCategory)', function (data) {
+        form.on('submit(editNews)', function (data) {
 
             $.ajax({
                 url: "/admin/news/editSubmit",
@@ -89,7 +105,9 @@
                 data: JSON.stringify(data),
                 success: function (data) {
                     if (data) {
-                        layer.alert("提交成功！")
+                        layer.alert("提交成功！");
+
+                        window.location=("/admin/news/list");
                     } else {
                         layer.alert("提交失败！")
                     }

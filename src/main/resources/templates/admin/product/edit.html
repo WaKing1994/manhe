@@ -49,7 +49,7 @@
                     <input  class="layui-input" type="hidden" id="banner" name="banner" th:value="${product.banner}"/>
                     <input class="layui-upload-file" type="file" accept="" >
                     <div class="layui-upload-list">
-                        <img class="layui-upload-img" id="demo1" src="${product.banner}">
+                        <img class="layui-upload-img" id="demo1" th:src="${product.banner}">
                         <p id="demoText"></p>
                     </div>
                 </div>

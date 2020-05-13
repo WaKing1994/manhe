@@ -1,19 +1,43 @@
 package com.manhe.dal.dataobject;
 
 
+import com.manhe.common.TimeUtil;
+
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class ContactDO implements Serializable {
 
     private Long id;
     private String nickName;
     private String mobile;
+    private String email;
     private String area;
     private String context;
     private Date createTime;
+    //虚拟字段
+    private String createTimeStr;
 
     public ContactDO() {
+    }
+
+    public String getCreateTimeStr() {
+        return TimeUtil.dateStringFormat2(createTime);
+    }
+
+    public void setCreateTimeStr(String createTimeStr) {
+        this.createTimeStr = createTimeStr;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getId() {

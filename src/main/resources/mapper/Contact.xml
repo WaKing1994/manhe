@@ -6,7 +6,8 @@
 
     <sql id="allFields">
 		 id,
-        `nickName`,
+       `nickName`,
+        email,
         mobile,
         area,
         context,
@@ -20,8 +21,8 @@
     <!-- 插入 -->
     <insert id="insert" parameterType="com.manhe.dal.dataobject.ContactDO">
         INSERT INTO  <include refid="table"/>
-        (`nickName`,mobile,area,context,createTime)
-        VALUES (#{nickName},#{mobile},#{area},#{context},now())
+        (`nickName`,email,mobile,area,context,createTime)
+        VALUES (#{nickName},#{email},#{mobile},#{area},#{context},now())
     </insert>
 
     <update id="update" parameterType="com.manhe.dal.dataobject.ContactDO">

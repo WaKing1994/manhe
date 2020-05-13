@@ -21,7 +21,6 @@
     <link href="css\slick.css" rel="stylesheet">
     <link href="css\mislider.css" rel="stylesheet">
     <link href="css\mislider-skin-cameo.css" rel="stylesheet">
-    <link href="css\css.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="/js/html5shiv.min.js"></script>
     <script src="/js/respond.min.js"></script>
@@ -44,6 +43,56 @@
                 navButtonsOpacity: 1
             });
         });
+        function addContact() {
+            console.log("2333");
+
+            if( document.fm.email.value == ""){
+                alert("请先填写邮箱");
+                return;
+            }
+
+            if( document.fm.name.value == ""){
+                alert("请先填写称呼");
+                return;
+            }
+            if( document.fm.mobile.value == ""){
+                alert("请先填写联系电话");
+                return;
+            }
+            if( document.fm.city.value == ""){
+                alert("请先填写所在城市");
+                return;
+            }
+
+
+            var formdata =
+                {
+                email: document.fm.email.value,
+                name:document.fm.name.value,
+                mobile:document.fm.mobile.value,
+                city:document.fm.city.value,
+                comment:document.fm.comment.value
+                };
+            $.ajax({
+                url: "/contactSubmit",
+                type: "POST",
+                dataType: "json",
+                contentType: 'application/json;charset=UTF-8',
+                data: JSON.stringify(formdata),
+                success: function (data) {
+                    if (data) {
+                        alert("提交成功！");
+                        window.location = ("/contact");
+                    } else {
+                        alert("提交失败！")
+                    }
+                }
+                ,
+                error: function (e) {
+                    alert("提交失败！")
+                }
+            })
+        }
     </script>
     <script type="text/javascript">
         $(function () {
@@ -56,16 +105,15 @@
         })
     </script>
     <style>
-        .input
-        {
-            height:32px;
-            border-radius:5px;
-            outline:none;
+        .input {
+            height: 32px;
+            border-radius: 5px;
+            outline: none;
             border-top-style: groove;
             border-right-style: groove;
             border-bottom-style: groove;
             border-left-style: groove;
-            border:1px solid #a1a1a1;
+            border: 1px solid #a1a1a1;
         }
     </style>
 </head>
@@ -74,7 +122,7 @@
 <body onload="isPC()">
 <!--nav开始-->
 
-<header class="inner" style="background-image:url('images/h5_logo.jpg')">
+<header class="inner" id="header">
     <div class="wow top fadeInDown">
         <div class="container">
             <p class="mail"><a href="mailto:qq@12345678.com" target="_blank">企业邮箱</a></p>
@@ -86,7 +134,8 @@
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" style="margin-right:-10px;" data-toggle="collapse"
+                    <button type="button" class="navbar-toggle collapsed" style="margin-right:-10px;"
+                            data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
@@ -141,10 +190,10 @@
     <div class="clear"></div>
     <!--banner开始-->
     <div id="backgroundImage" class="inner_banner">
-    <ul class="banner-uls">
-      <li class="banner-lis"><a href="#" style="background-image: url('images/index_ban.jpg');"></a></li>
-    </ul>
-  </div>
+        <ul class="banner-uls">
+            <li class="banner-lis"><a href="#" style="background-image: url('images/index_ban.jpg');"></a></li>
+        </ul>
+    </div>
     <!--banner结束-->
     <div class="clear"></div>
 </header>
@@ -180,42 +229,50 @@
                     </div>
                     <div class="lxfs1 col-sm-4 col-md-4">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         &nbsp; &nbsp; &nbsp;<img src="images\lxfs3.jpg" alt="">
-                        <h3>邮箱</h3>E-MAIL ADDRESE<p>邮箱:<a href="http://mail.manhe.com" target="_blank">mail.manhe.com</a>
+                        <h3>邮箱</h3>E-MAIL ADDRESE<p>邮箱:<a href="http://mail.manhe.com"
+                                                          target="_blank">mail.manhe.com</a>
                             <br>网址：www.manhe.com
                         </p></div>
                 </div>
                 <div class="map">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <form action="#" th:action="@{/contactSubmit}" method="post">
+                    <form name="fm" id="fm" method="post">
                         <div class="contactus">
                             <div class="cont" style="text-align:center;">
-                                <h5>  欢迎您留下洽谈的信息，我们会在合适的时间联系你。<i></i></h5>
+                                <h5> 欢迎您留下洽谈的信息，我们会在合适的时间联系你。<i></i></h5>
                                 <div class="listform">
                                     <ul style="font-size: 24px;">
                                         <li style="margin-top: 20px">
                                             <span>邮  箱*</span>
-                                            <input style="border:1px solid #a1a1a1;" type="text" name="email" id="email">
+                                            <input style="border:1px solid #a1a1a1;" type="text" name="email" id="email"
+                                                   required="required">
                                         </li>
                                         <li style="margin-top: 20px">
                                             <span>称  呼*</span>
-                                            <input style="border:1px solid #a1a1a1;" type="text" name="name" id="name">
+                                            <input style="border:1px solid #a1a1a1;" type="text" name="name" id="name"
+                                                   required="required">
                                         </li>
 
                                         <li style="margin-top: 20px">
                                             <span>联系方式*</span>
-                                            <input style="border:1px solid #a1a1a1;" type="text" name="phone" id="mobile">
+                                            <input style="border:1px solid #a1a1a1;" type="text" name="mobile"
+                                                   id="mobile" required="required">
                                         </li>
                                         <li style="margin-top: 20px">
                                             <span>所在城市*</span>
-                                            <input style="border:1px solid #a1a1a1;" type="text" name="city" id="city">
+                                            <input style="border:1px solid #a1a1a1;" type="text" name="city" id="city"
+                                                   required="required">
                                         </li>
                                         <li style="margin-top: 20px">
                                             <span>需求简述*</span>
-                                            <input style="border:1px solid #a1a1a1;" type="text" name="city" id="comment">
+                                            <input style="border:1px solid #a1a1a1;" type="text" name="comment"
+                                                   id="comment" required="required">
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="listform" style="font-size: 24px;margin-top: 30px;">
-                                    <button  style="border:1px solid #a1a1a1;border-radius:4px;" type="submit">提   交</button>
+                                    <input style="border:1px solid #a1a1a1;border-radius:4px;"
+                                            type="button" onclick="addContact()" value="提 交" />
+
                                 </div>
                             </div>
                         </div>

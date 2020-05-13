@@ -158,6 +158,8 @@ function isPC() {
 		obj.remove();
 		var logo = document.getElementById("logoImage");
 		logo.remove();
+		var header = document.getElementById("header");
+		header.style.backgroundImage="url('images/h5_logo.jpg')";
 	}
 }
  

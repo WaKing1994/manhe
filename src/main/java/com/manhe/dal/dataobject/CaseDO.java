@@ -1,6 +1,8 @@
 package com.manhe.dal.dataobject;
 
 
+import com.manhe.common.TimeUtil;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,8 +17,18 @@ public class CaseDO implements Serializable {
     private Date createTime;
     private Integer viewCount;
     private Long categoryId;
+    //虚拟字段
+    private String createTimeStr;
 
     public CaseDO() {
+    }
+
+    public String getCreateTimeStr() {
+        return TimeUtil.dateStringFormat2(createTime);
+    }
+
+    public void setCreateTimeStr(String createTimeStr) {
+        this.createTimeStr = createTimeStr;
     }
 
     public Long getCategoryId() {

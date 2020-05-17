@@ -41,7 +41,8 @@ public class NewsController {
         HashMap<String,Object> param = new HashMap<>();
         param.put("id",newsId);
         NewsDO newsDO = newsService.get(param);
-
+        newsDO.setViewCount(newsDO.getViewCount()+1);
+        newsService.update(newsDO);
         mav.addObject("productCategory", productCategory);
         mav.addObject("news", newsDO);
         return mav;

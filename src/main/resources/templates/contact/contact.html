@@ -46,10 +46,7 @@
         function addContact() {
             console.log("2333");
 
-            if( document.fm.email.value == ""){
-                alert("请先填写邮箱");
-                return;
-            }
+
 
             if( document.fm.name.value == ""){
                 alert("请先填写称呼");
@@ -57,10 +54,6 @@
             }
             if( document.fm.mobile.value == ""){
                 alert("请先填写联系电话");
-                return;
-            }
-            if( document.fm.city.value == ""){
-                alert("请先填写所在城市");
                 return;
             }
 
@@ -115,6 +108,43 @@
             border-left-style: groove;
             border: 1px solid #a1a1a1;
         }
+        .listform {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+        .listform li {
+            width: 40%;
+            margin: 20px auto 0;
+        }
+        .listform li span {
+            width: 20%;
+            display: inline-block;
+            text-align: right;
+            font-size: 16px;
+            /* color: #7f511f; */
+        }
+        .listform li input {
+            display: inline-block;
+            width: 70%;
+            outline: none;
+            border-radius: 16px;
+            padding: 0 15px;
+            font-size: 20px;
+            /* border: 1px solid #b08e68; */
+        }
+        .submit {
+            width: 150px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: #b08e68;
+            color: #fff;
+            text-align: center;
+            font-size: 20px;
+            line-height: 40px;
+            margin: 0 auto;
+            outline: none;
+        }
     </style>
 </head>
 
@@ -126,7 +156,7 @@
     <div class="wow top fadeInDown">
         <div class="container">
             <p class="mail"><a href="mailto:qq@12345678.com" target="_blank">企业邮箱</a></p>
-            <p class="tel">服务咨询热线： 0575-xxxxxxx</p>
+            <p class="tel">服务咨询热线： 0575-87655998</p>
         </div>
     </div>
     <nav class="navbar navbar-default" role="navigation">
@@ -147,11 +177,11 @@
                         <li><a href="/about">走进曼赫<i></i></a>
                             <ul>
                                 <li><a href="/about">公司简介</a></li>
-                                <li><a href="/about1?type=honor">公司荣誉</a></li>
-                                <li><a href="/about2?type=equipment">生产设备</a></li>
+                                <!--                <li><a href="/about1">公司荣誉</a></li>-->
+                                <!--                                <li><a href="/about2?type=equipment">生产设备</a></li>-->
                             </ul>
                         </li>
-                        <li><a href="/news">公司新闻<i></i></a></li>
+<!--                        <li><a href="/news">公司新闻<i></i></a></li>-->
                         <li><a href="/product">产品展示<i></i></a>
                             <ul>
 
@@ -224,8 +254,8 @@
                     <div class="lxfs1 line col-sm-4 col-md-4">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         &nbsp; &nbsp; &nbsp; &nbsp;
                         <img src="images\lxfs2.jpg" alt="">
-                        <h3>电话</h3>PHONENUMBER<p>服务热线： 0575-xxxxxxx<br>
-                            传真： 0575-xxxxxxx</p>
+                        <h3>电话</h3>PHONENUMBER<p>服务咨询热线： 0575-87655998<br>
+                            传真： 0575-87655998</p>
                     </div>
                     <div class="lxfs1 col-sm-4 col-md-4">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         &nbsp; &nbsp; &nbsp;<img src="images\lxfs3.jpg" alt="">
@@ -242,7 +272,7 @@
                                 <div class="listform">
                                     <ul style="font-size: 24px;">
                                         <li style="margin-top: 20px">
-                                            <span>邮  箱*</span>
+                                            <span>邮  箱</span>
                                             <input style="border:1px solid #a1a1a1;" type="text" name="email" id="email"
                                                    required="required">
                                         </li>
@@ -258,19 +288,19 @@
                                                    id="mobile" required="required">
                                         </li>
                                         <li style="margin-top: 20px">
-                                            <span>所在城市*</span>
+                                            <span>所在城市</span>
                                             <input style="border:1px solid #a1a1a1;" type="text" name="city" id="city"
                                                    required="required">
                                         </li>
                                         <li style="margin-top: 20px">
-                                            <span>需求简述*</span>
+                                            <span>需求简述</span>
                                             <input style="border:1px solid #a1a1a1;" type="text" name="comment"
                                                    id="comment" required="required">
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="listform" style="font-size: 24px;margin-top: 30px;">
-                                    <input style="border:1px solid #a1a1a1;border-radius:4px;"
+                                    <input class="submit"
                                             type="button" onclick="addContact()" value="提 交" />
 
                                 </div>
@@ -281,7 +311,7 @@
                 <div class="route"><h3>如何达到诸暨市金耐门业科技有限公司：</h3>行车路线：<p>
                     a.绍兴北站下车 → 诸暨 → 市区 → → 曼赫铜门公司<br>
                     b.绍杭高速 → 诸暨绕城高速方向 → 曼赫铜门公司<br>
-                    c.<br></p></div>
+                    </p></div>
             </div>
         </div>
     </div>
@@ -299,7 +329,7 @@
                 <ul>
                     <li><a href="/">曼赫首页</a></li>
                     <li><a href="/about">走进曼赫</a></li>
-                    <li><a href="/news">公司新闻</a></li>
+                    <!-- <li><a href="/news">公司新闻<i></i></a></li> -->
                     <li><a href="/product">产品展示</a></li>
                     <li><a href="/case">典型工程</a></li>
                     <li><a href="/service1">客户服务</a></li>
@@ -312,22 +342,21 @@
         <div class="container">
             <div class="footer3_fl col-md-6">
                 <h3>公司简介</h3>
-                <p>
-                    诸暨市金耐门业科技有限公司系一家注册于诸暨国家高新技术产业开发区的股份制企业，公司由五家下属企业组成，占地面积50余亩，年生产规模达二万平方米，连续五年铜门全国销量列前。先后承接工程三千多项，曾参与多项国家重点工程建设。产品出口美国、英国、台湾等地．．． </p>
-                <span><a href="/about">+查看详情</a></span></div>
+                <p> 诸暨市金耐门业科技有限公司是一家以雄厚的实力、先进的管理、精英的团队、专业的技术、一流的产品而成就的集门窗类产品设计、研发、制造、运营一体化的现代化企业。 </p>
+                <span><a href="/about">+查看详情</a></span> </div>
             <div class="footer3_fc col-md-1"></div>
             <div class="footer3_fr col-md-5">
                 <h3>联系我们</h3>
-                <p> 电话： 0575-xxxxxxx&nbsp;&nbsp;&nbsp;&nbsp;传真： 0575-xxxxxxx&nbsp;&nbsp;&nbsp;&nbsp;邮编：312000<br>
-                    邮箱：qq@12345678.com &nbsp;&nbsp;地址：浙江省绍兴市诸暨 </p>
+                <p> 电话： 0575-87655998&nbsp;&nbsp;&nbsp;&nbsp;传真： 0575-87655998&nbsp;&nbsp;&nbsp;&nbsp;邮编：311800<br>
+                    邮箱：156962228@qq.com &nbsp;&nbsp;地址：浙江省绍兴市诸暨市浣东街道李村二村李三自然街道328号</p>
                 <!--        <img src="images\ewm.png" alt=""> -->
             </div>
         </div>
     </div>
     <div class="wow footer2 fadeInUp">
         <div class="container">
-            <p> 任何个人或单位未经许可不得复制转载转刊 本网站涉及内容最终归诸暨市金耐门业科技有限公司所有 <br>
-                Copyright © 2020 版权所有：诸暨市金耐门业科技有限公司   </p>
+            <p> 任何个人或单位未经许可不得复制转载转刊 本网站涉及内容最终归诸暨市金耐门业科技有限公司所有  <br>
+                Copyright © 2020 版权所有：诸暨市金耐门业科技有限公司    </p>
         </div>
     </div>
 </footer>

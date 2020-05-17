@@ -54,6 +54,8 @@ public class CaseController {
         Map<String, Object> param = new HashMap<>();
         param.put("id", caseId);
         CaseDO caseDO = caseService.get(param);
+        caseDO.setViewCount(caseDO.getViewCount()+1);
+        caseService.update(caseDO);
         mav.addObject("productCategory", productCategory);
         mav.addObject("caseCategory", caseCategory);
         mav.addObject("case", caseDO);

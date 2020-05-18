@@ -64,7 +64,7 @@ public class CaseController {
         CaseDO caseDO = new CaseDO();
         caseDO.setName(name);
         caseDO.setCategoryId(categoryId);
-        caseDO.setDetails(details);
+        caseDO.setDetails("  " + details);
         caseDO.setPriority(priority);
         caseDO.setBanner(banner);
         caseDO.setViewCount(0);
@@ -98,7 +98,7 @@ public class CaseController {
         caseDO.setId(id);
         caseDO.setName(name);
         caseDO.setCategoryId(categoryId);
-        caseDO.setDetails(details);
+        caseDO.setDetails("  " + details);
         caseDO.setPriority(priority);
         caseDO.setBanner(banner);
         caseDO.setViewCount(viewCount);

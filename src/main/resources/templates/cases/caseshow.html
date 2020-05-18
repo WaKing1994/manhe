@@ -169,8 +169,9 @@
                     <span th:text="'浏览人数：'+${case.viewCount}"></span>
                 </div>
                 <div class="show_content">
+                    <p th:text="${{case.details}}"></p>
                     <p style="text-align: center;">
-                        <img th:src="${{case.images}}" style=""><br><br>
+                        <img th:src="${{case.banner}}" style=""><br><br>
                     </p>
                 </div>
                 <div class="show_back">

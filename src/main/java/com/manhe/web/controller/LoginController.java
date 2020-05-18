@@ -35,7 +35,7 @@ public class LoginController {
             session.setAttribute("user", adminDO);
             return "admin/home/index";
         } else {
-            return "redirect:admin/login";
+            return "admin/login";
         }
 
     }

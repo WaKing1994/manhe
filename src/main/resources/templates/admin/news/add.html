@@ -23,13 +23,13 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">内容描述</label>
                     <div class="layui-input-block">
-                        <textarea name="details" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        <textarea name="details" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">优先级</label>
                     <div class="layui-input-block">
-                        <input type="text" name="priority" lay-verify="title" autocomplete="off" placeholder="优先级"
+                        <input type="text" name="priority" lay-verify="required" autocomplete="off" placeholder="优先级"
                                class="layui-input">
                     </div>
                 </div>
@@ -68,9 +68,7 @@
             , done: function (res) {
                 //如果上传失败
                 $('#banner').attr('value', res.data);
-                if (res.code > 0) {
-                    return layer.msg('上传失败');
-                }
+                  return layer.msg('上传成功');
                 //上传成功
             }
             , error: function () {

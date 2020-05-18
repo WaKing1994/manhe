@@ -43,16 +43,16 @@
                 navButtonsOpacity: 1
             });
         });
+
         function addContact() {
             console.log("2333");
 
 
-
-            if( document.fm.name.value == ""){
+            if (document.fm.name.value == "") {
                 alert("请先填写称呼");
                 return;
             }
-            if( document.fm.mobile.value == ""){
+            if (document.fm.mobile.value == "") {
                 alert("请先填写联系电话");
                 return;
             }
@@ -60,11 +60,11 @@
 
             var formdata =
                 {
-                email: document.fm.email.value,
-                name:document.fm.name.value,
-                mobile:document.fm.mobile.value,
-                city:document.fm.city.value,
-                comment:document.fm.comment.value
+                    email: document.fm.email.value,
+                    name: document.fm.name.value,
+                    mobile: document.fm.mobile.value,
+                    city: document.fm.city.value,
+                    comment: document.fm.comment.value
                 };
             $.ajax({
                 url: "/contactSubmit",
@@ -108,15 +108,18 @@
             border-left-style: groove;
             border: 1px solid #a1a1a1;
         }
+
         .listform {
             width: 100%;
             height: auto;
             overflow: hidden;
         }
+
         .listform li {
             width: 40%;
             margin: 20px auto 0;
         }
+
         .listform li span {
             width: 20%;
             display: inline-block;
@@ -124,6 +127,7 @@
             font-size: 16px;
             /* color: #7f511f; */
         }
+
         .listform li input {
             display: inline-block;
             width: 70%;
@@ -133,6 +137,7 @@
             font-size: 20px;
             /* border: 1px solid #b08e68; */
         }
+
         .submit {
             width: 150px;
             height: 40px;
@@ -145,6 +150,13 @@
             margin: 0 auto;
             outline: none;
         }
+
+        @media (max-width: 994px) {
+            .listform li {
+                width: 100%;
+            }
+        }
+
     </style>
 </head>
 
@@ -155,7 +167,7 @@
 <header class="inner" id="header">
     <div class="wow top fadeInDown">
         <div class="container">
-            <p class="mail"><a href="mailto:qq@12345678.com" target="_blank">企业邮箱</a></p>
+            <p class="mail"><a href="mailto:156962228@qq.com" target="_blank">企业邮箱</a></p>
             <p class="tel">服务咨询热线： 0575-87655998</p>
         </div>
     </div>
@@ -181,7 +193,7 @@
                                 <!--                                <li><a href="/about2?type=equipment">生产设备</a></li>-->
                             </ul>
                         </li>
-<!--                        <li><a href="/news">公司新闻<i></i></a></li>-->
+                        <!--                        <li><a href="/news">公司新闻<i></i></a></li>-->
                         <li><a href="/product">产品展示<i></i></a>
                             <ul>
 
@@ -250,7 +262,7 @@
                     <div class="lxfs1 col-sm-4 col-md-4">&nbsp;
                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp<img
                                 src="images\lxfs1.jpg" alt="">
-                        <h3>位置</h3>OFFICE ADDRESE<p>地址：诸暨市xxxxx</p></div>
+                        <h3>位置</h3>OFFICE ADDRESE<p>地址：浙江省绍兴市诸暨市浣东街道李村二村李三自然街道328号</p></div>
                     <div class="lxfs1 line col-sm-4 col-md-4">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         &nbsp; &nbsp; &nbsp; &nbsp;
                         <img src="images\lxfs2.jpg" alt="">
@@ -259,9 +271,9 @@
                     </div>
                     <div class="lxfs1 col-sm-4 col-md-4">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         &nbsp; &nbsp; &nbsp;<img src="images\lxfs3.jpg" alt="">
-                        <h3>邮箱</h3>E-MAIL ADDRESE<p>邮箱:<a href="http://mail.manhe.com"
-                                                          target="_blank">mail.manhe.com</a>
-                            <br>网址：www.manhe.com
+                        <h3>邮箱</h3>E-MAIL ADDRESE<p>邮箱:<a href="mailto:156962228@qq.com"
+                                                          target="_blank">156962228@qq.com</a>
+                            <br>网址：www.manhedoor.cn
                         </p></div>
                 </div>
                 <div class="map">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -301,7 +313,7 @@
                                 </div>
                                 <div class="listform" style="font-size: 24px;margin-top: 30px;">
                                     <input class="submit"
-                                            type="button" onclick="addContact()" value="提 交" />
+                                           type="button" onclick="addContact()" value="提 交"/>
 
                                 </div>
                             </div>
@@ -311,7 +323,7 @@
                 <div class="route"><h3>如何达到诸暨市金耐门业科技有限公司：</h3>行车路线：<p>
                     a.绍兴北站下车 → 诸暨 → 市区 → → 曼赫铜门公司<br>
                     b.绍杭高速 → 诸暨绕城高速方向 → 曼赫铜门公司<br>
-                    </p></div>
+                </p></div>
             </div>
         </div>
     </div>
@@ -343,7 +355,7 @@
             <div class="footer3_fl col-md-6">
                 <h3>公司简介</h3>
                 <p> 诸暨市金耐门业科技有限公司是一家以雄厚的实力、先进的管理、精英的团队、专业的技术、一流的产品而成就的集门窗类产品设计、研发、制造、运营一体化的现代化企业。 </p>
-                <span><a href="/about">+查看详情</a></span> </div>
+                <span><a href="/about">+查看详情</a></span></div>
             <div class="footer3_fc col-md-1"></div>
             <div class="footer3_fr col-md-5">
                 <h3>联系我们</h3>
@@ -355,8 +367,8 @@
     </div>
     <div class="wow footer2 fadeInUp">
         <div class="container">
-            <p> 任何个人或单位未经许可不得复制转载转刊 本网站涉及内容最终归诸暨市金耐门业科技有限公司所有  <br>
-                Copyright © 2020 版权所有：诸暨市金耐门业科技有限公司    </p>
+            <p> 任何个人或单位未经许可不得复制转载转刊 本网站涉及内容最终归诸暨市金耐门业科技有限公司所有 <br>
+                Copyright © 2020 版权所有：诸暨市金耐门业科技有限公司   </p>
         </div>
     </div>
 </footer>

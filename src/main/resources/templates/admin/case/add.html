@@ -31,7 +31,7 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">
-                        <textarea name="details" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        <textarea name="details" lay-verify="required" placeholder="请输入内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="layui-upload">
                     <button type="button" class="layui-btn" id="test1">上传图片</button>
-                    <input  class="layui-input" type="hidden" id="banner" name="banner" value="test"/>
+                    <input  class="layui-input" type="hidden" id="banner" name="banner" lay-verify="required" value=""/>
                     <input class="layui-upload-file" type="file" accept="">
                     <div class="layui-upload-list">
                         <img class="layui-upload-img" id="demo1">
@@ -74,10 +74,10 @@
             }
             , done: function (res) {
                 //如果上传失败
+                console.log(res);
                 $('#banner').attr('value', res.data);
-                if (res.code > 0) {
-                    return layer.msg('上传失败');
-                }
+                    return layer.msg('上传成功');
+
                 //上传成功
             }
             , error: function () {
@@ -105,7 +105,7 @@
                 success: function (data) {
                     if (data) {
                         layer.alert("提交成功！");
-                        window.location=("/admin/caseCategory/list");
+                        window.location=("/admin/case/list");
                     } else {
                         layer.alert("提交失败！")
                     }

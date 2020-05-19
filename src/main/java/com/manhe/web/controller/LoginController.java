@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,9 +18,17 @@ import java.util.Map;
 
 @Controller
 public class LoginController {
-    @GetMapping("/admin/login")
-    public String login() {
-        return "admin/login";
+
+    @RequestMapping("/admin/login")
+    public ModelAndView login() {
+        ModelAndView mav = new ModelAndView("admin/login");
+        return mav;
+    }
+
+    @RequestMapping("/admin")
+    public ModelAndView admin() {
+        ModelAndView mav = new ModelAndView("admin/login");
+        return mav;
     }
 
     @PostMapping("/admin/loginVerify")

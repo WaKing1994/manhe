@@ -52,8 +52,8 @@ a:hover{color:#000;}
 
 
 
-.header_lb{ position:absolute; left:30px; top:50%; margin-top:-12px; cursor:pointer; }
-.header_lb i{font-size:28px;color:#F9F0E2;}
+.header_lb{ position:absolute; left:15px; top:50%; margin-top:-12px; cursor:pointer; }
+.header_lb i{font-size:28px;color:#9c7b56;}
 
 .header_zy{ position:absolute; right:30px; top:50%; margin-top:-12px;}
 .header_zy i{font-size:28px;color:#9F785A;}

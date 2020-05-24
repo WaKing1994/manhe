@@ -62,8 +62,8 @@
         <if test="id != null and id != ''">
             AND id = #{id}
         </if>
-        <if test="name != null and name != ''">
-            AND `nickName` = #{nickName}
+        <if test="nickName != null and nickName != ''">
+            AND `nickName` like CONCAT('%',#{nickName},'%')
         </if>
     </sql>
 

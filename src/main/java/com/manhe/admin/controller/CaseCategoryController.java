@@ -32,19 +32,23 @@ public class CaseCategoryController {
         mav.addObject("caseCategorys", caseCategoryDOS);
         return mav;
     }
-    @PostMapping("/list2")
-    public Map<String,Object> list(@Param("limits") Integer limits, @Param("page") Integer page, @Ignore Response response) {
-        PageInfo pageInfo = PageInfo.genPageInfoPage(page == null ? 1 : page, limits == null ? 10 : limits);
-        List<CaseCategoryDO> caseCategoryDOS = caseCategoryService.find(null, pageInfo);
-        Map<String,Object> resultMap = new HashMap<String, Object>();
 
-        resultMap.put("code",0);
-        resultMap.put("msg","");
-        resultMap.put("count",pageInfo.getTotalCount());
-        resultMap.put("data",caseCategoryDOS);
+    @PostMapping("/list2")
+    public Map<String, Object> list(@Param("name") String name, @Param("limits") Integer limits, @Param("page") Integer page, @Ignore Response response) {
+        PageInfo pageInfo = PageInfo.genPageInfoPage(page == null ? 1 : page, limits == null ? 10 : limits);
+        Map<String, Object> param = new HashMap<>();
+        param.put("name", name);
+        List<CaseCategoryDO> caseCategoryDOS = caseCategoryService.find(param, pageInfo);
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+
+        resultMap.put("code", 0);
+        resultMap.put("msg", "");
+        resultMap.put("count", pageInfo.getTotalCount());
+        resultMap.put("data", caseCategoryDOS);
 
         return resultMap;
     }
+
     @RequestMapping("/add")
     public ModelAndView add() {
         ModelAndView mav = new ModelAndView("admin/caseCategory/add");

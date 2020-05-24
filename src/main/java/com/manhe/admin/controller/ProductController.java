@@ -3,6 +3,7 @@ package com.manhe.admin.controller;
 import com.manhe.common.Response;
 import com.manhe.dal.dataobject.ProductCategoryDO;
 import com.manhe.dal.dataobject.ProductDO;
+import com.manhe.dal.dto.ProductDTO;
 import com.manhe.dal.pageUtils.PageInfo;
 import com.manhe.service.NewsService;
 import com.manhe.service.ProductCategoryService;
@@ -29,23 +30,25 @@ public class ProductController {
         PageInfo pageInfo = PageInfo.genPageInfoPage(pageNo == null ? 1 : pageNo, 10);
         Map<String, Object> param = new HashMap<>();
         param.put("categoryId", categoryId);
-        List<ProductDO> productDOS = productService.find(param, pageInfo);
+        List<ProductDTO> productDTOS = productService.find(param, pageInfo);
         ModelAndView mav = new ModelAndView("admin/product/list");
-        mav.addObject("products", productDOS);
+        mav.addObject("products", productDTOS);
         mav.addObject("totalCounts", pageInfo.getTotalCount());
         return mav;
     }
 
     @PostMapping("/list2")
-    public Map<String,Object> list(@Param("limits") Integer limits, @Param("page") Integer page,@Ignore Response response) {
+    public Map<String, Object> list(@Param("productName") String productName, @Param("limits") Integer limits, @Param("page") Integer page, @Ignore Response response) {
         PageInfo pageInfo = PageInfo.genPageInfoPage(page == null ? 1 : page, limits == null ? 10 : limits);
-        List<ProductDO> productDOS = productService.find(null, pageInfo);
-        Map<String,Object> resultMap = new HashMap<String, Object>();
+        Map<String, Object> param = new HashMap<>();
+        param.put("name", productName);
+        List<ProductDTO> productDTOS = productService.find(param, pageInfo);
+        Map<String, Object> resultMap = new HashMap<String, Object>();
 
-        resultMap.put("code",0);
-        resultMap.put("msg","");
-        resultMap.put("count",pageInfo.getTotalCount());
-        resultMap.put("data",productDOS);
+        resultMap.put("code", 0);
+        resultMap.put("msg", "");
+        resultMap.put("count", pageInfo.getTotalCount());
+        resultMap.put("data", productDTOS);
 
         return resultMap;
     }

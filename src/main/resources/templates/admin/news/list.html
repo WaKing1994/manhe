@@ -19,7 +19,7 @@
 <!--            <th>封面</th>-->
 <!--            <th>描述</th>-->
 <!--            <th>浏览数</th>-->
-<!--            <th>优先级</th>-->
+<!--            <th>排序</th>-->
 <!--            <th>操作</th>-->
 <!--        </tr>-->
 <!--        </thead>-->
@@ -89,12 +89,12 @@
             //templet: function(data){} 数据表格请求后台回调函数，处理数据
             //return  表示在对应的列中输出的内容
             cols: [[
-                {field:'id',width:60,title:'ID'},
+                {type: 'numbers',title: '序号'},
                 {field:'name', title:'工程名称'},
                 {field:'details',title:'描述'},
                 {field:'banner',title:'图片',templet:"#imgtmp"},
                 {field:'viewCount',title:'浏览数'},
-                {field:'priority',title:'优先级'},
+                {field:'priority',title:'排序'},
                 {title:'编辑',width:80,templet:"#editButton"},
                 {title:'删除',width:80,templet:"#delButton"}
             ]],

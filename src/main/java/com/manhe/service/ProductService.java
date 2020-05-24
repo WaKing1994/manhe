@@ -1,6 +1,7 @@
 package com.manhe.service;
 
 import com.manhe.dal.dataobject.ProductDO;
+import com.manhe.dal.dto.ProductDTO;
 import com.manhe.dal.pageUtils.PageInfo;
 
 import java.util.List;
@@ -17,6 +18,6 @@ public interface ProductService {
 
     public List<ProductDO> find(Map req);
 
-    public List<ProductDO> find(Map req, PageInfo pageInfo);
+    public List<ProductDTO> find(Map req, PageInfo pageInfo);
 
 }

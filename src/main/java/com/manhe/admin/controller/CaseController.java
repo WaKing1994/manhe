@@ -32,9 +32,12 @@ public class CaseController {
     }
 
     @PostMapping("/list2")
-    public Map<String, Object> list(@Param("limits") Integer limits, @Param("page") Integer page, @Ignore Response response) {
+    public Map<String, Object> list(@Param("name") String name, @Param("limits") Integer limits, @Param("page") Integer page, @Ignore Response response) {
         PageInfo pageInfo = PageInfo.genPageInfoPage(page == null ? 1 : page, limits == null ? 10 : limits);
-        List<CaseDO> caseDOS = caseService.find(null, pageInfo);
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("name", name);
+        List<CaseDO> caseDOS = caseService.find(param, pageInfo);
         Map<String, Object> resultMap = new HashMap<String, Object>();
 
         resultMap.put("code", 0);

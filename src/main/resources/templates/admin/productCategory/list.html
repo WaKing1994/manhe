@@ -11,6 +11,14 @@
         <li lay-id="2" class="layui"><a href="/admin/productCategory/add">添加产品分类</a></li>
     </ul>
 
+    <br/>
+    <div class="demoTable">
+        分类名称：
+        <div class="layui-inline">
+            <input class="layui-input" name="name" id="name" autocomplete="off">
+        </div>
+        <button class="layui-btn" data-type="reload">搜索</button>
+    </div>
     <table class="layui-table" id="tableList"></table>
 </div>
 </html>
@@ -59,13 +67,14 @@
             //templet: function(data){} 数据表格请求后台回调函数，处理数据
             //return  表示在对应的列中输出的内容
             cols: [[
-                {field:'id',width:60,title:'ID'},
+                {type: 'numbers',title: '序号'},
                 {field:'name', title:'分类名称'},
                 {field:'details',title:'描述'},
-                {field:'priority',title:'优先级'},
+                {field:'priority',title:'排序'},
                 {title:'编辑',width:80,templet:"#editButton"},
                 {title:'删除',width:80,templet:"#delButton"}
             ]],
+            id: 'tableList',
             done:function(res, curr, count){
                 console.log("表格渲染完成：");
                 console.log(res);
@@ -73,6 +82,27 @@
                 console.log(count);
             }
 
+        });
+
+        var $ = layui.$, active = {
+            reload: function(){
+                var name = $('#name');
+
+                //执行重载
+                table.reload('tableList', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        name: name.val()
+                    }
+                }, 'data');
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
         });
     });
 </script>

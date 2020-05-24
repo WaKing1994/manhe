@@ -1,12 +1,18 @@
 package com.manhe.service.impl;
 
 import com.manhe.dal.dao.ProductDAO;
+import com.manhe.dal.dataobject.ProductCategoryDO;
 import com.manhe.dal.dataobject.ProductDO;
+import com.manhe.dal.dto.ProductDTO;
 import com.manhe.dal.pageUtils.PageInfo;
+import com.manhe.service.ProductCategoryService;
 import com.manhe.service.ProductService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +22,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductDAO dao;
-
+    @Autowired
+    private ProductCategoryService productCategoryService;
 
     @Override
     public void insert(ProductDO productDO) {
@@ -44,7 +51,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDO> find(Map req, PageInfo pageInfo) {
-        return dao.getListByMap(req, pageInfo);
+    public List<ProductDTO> find(Map req, PageInfo pageInfo) {
+
+        List<ProductDTO> list = new ArrayList<>();
+        List<ProductDO> productDOS = dao.getListByMap(req, pageInfo);
+        for (ProductDO productDO : productDOS) {
+            ProductDTO productDTO = new ProductDTO();
+            BeanUtils.copyProperties(productDO, productDTO);
+            {
+                Map<String, Object> param = new HashMap<>();
+                param.put("id", productDO.getCategoryId());
+                ProductCategoryDO productCategoryDO = productCategoryService.get(param);
+                if (productCategoryDO != null) {
+                    productDTO.setCategoryName(productCategoryDO.getName());
+                }
+            }
+            list.add(productDTO);
+        }
+        return list;
     }
 }

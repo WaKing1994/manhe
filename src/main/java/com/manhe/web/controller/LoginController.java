@@ -1,7 +1,9 @@
 package com.manhe.web.controller;
 
 import com.manhe.dal.dataobject.AdminDO;
+import com.manhe.dal.dataobject.ConfigDO;
 import com.manhe.service.AdminService;
+import com.manhe.service.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +34,7 @@ public class LoginController {
     }
 
     @PostMapping("/admin/loginVerify")
-    public String loginVerify(String username, String password, HttpSession session) {
+    public ModelAndView loginVerify(String username, String password, HttpSession session) {
         HttpServletRequest request = getNativeRequest();
 
         Map<String, Object> param = new HashMap<>();
@@ -43,9 +45,19 @@ public class LoginController {
         if (adminDO != null) {
             session = request.getSession(true);
             session.setAttribute("user", adminDO);
-            return "admin/home/index";
+
+            Map<String, Object> configParam = new HashMap<>();
+            configParam.put("name", "首页浏览数");
+            ConfigDO home = configService.get(configParam);
+            configParam.put("name", "工程浏览数");
+            ConfigDO cases = configService.get(configParam);
+            ModelAndView mav = new ModelAndView("redirect:home/index");
+            mav.addObject("homeViewCount", home.getValue());
+            mav.addObject("caseViewCount", cases.getValue());
+            return mav;
         } else {
-            return "admin/login";
+            ModelAndView mav = new ModelAndView("redirect:login");
+            return mav;
         }
 
     }
@@ -57,4 +69,6 @@ public class LoginController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private ConfigService configService;
 }

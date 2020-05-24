@@ -2,6 +2,7 @@ package com.manhe.web.controller;
 
 import com.manhe.dal.dataobject.CaseCategoryDO;
 import com.manhe.dal.dataobject.CaseDO;
+import com.manhe.dal.dataobject.ConfigDO;
 import com.manhe.dal.dataobject.ProductCategoryDO;
 import com.manhe.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,15 @@ public class CaseController {
             item.put("cases", cases);
             list.add(item);
         }
+
+        Map<String, Object> configParam = new HashMap<>();
+        configParam.put("name", "工程浏览数");
+        ConfigDO configDO = configService.get(configParam);
+        if (configDO != null) {
+            Integer count = Integer.valueOf(configDO.getValue()) + 1;
+            configDO.setValue(count.toString());
+            configService.update(configDO);
+        }
         mav.addObject("productCategory", productCategory);
         mav.addObject("caseCategory", caseCategory);
         mav.addObject("list", list);
@@ -56,6 +66,15 @@ public class CaseController {
         CaseDO caseDO = caseService.get(param);
         caseDO.setViewCount(caseDO.getViewCount()+1);
         caseService.update(caseDO);
+
+        Map<String, Object> configParam = new HashMap<>();
+        configParam.put("name", "工程浏览数");
+        ConfigDO configDO = configService.get(configParam);
+        if (configDO != null) {
+            Integer count = Integer.valueOf(configDO.getValue()) + 1;
+            configDO.setValue(count.toString());
+            configService.update(configDO);
+        }
         mav.addObject("productCategory", productCategory);
         mav.addObject("caseCategory", caseCategory);
         mav.addObject("case", caseDO);
@@ -69,4 +88,6 @@ public class CaseController {
     private CaseService caseService;
     @Autowired
     private ProductCategoryService productCategoryService;
+    @Autowired
+    private ConfigService configService;
 }

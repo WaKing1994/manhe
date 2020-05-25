@@ -60,11 +60,11 @@
 
     <select id="getListByMap" parameterType="Map" resultType="com.manhe.dal.dataobject.ProductDO">
         select
-        <include refid="allFields"/>
+        p.*
         from
-        <include refid="table"/>
+        product as p left join productCategory as pc on p.categoryId = pc.id
         where 1=1
-        <include refid="condition"></include>
+        <include refid="PageCondition"></include>
         order by priority desc
     </select>
 
@@ -78,6 +78,20 @@
         </if>
         <if test="categoryId != null">
             AND `categoryId` = #{categoryId}
+        </if>
+    </sql>
+    <sql id="PageCondition">
+        <if test="id != null">
+            AND p.id = #{id}
+        </if>
+        <if test="name != null and name != ''">
+            AND p.`name` like CONCAT('%',#{name},'%')
+        </if>
+        <if test="categoryId != null">
+            AND p.`categoryId` = #{categoryId}
+        </if>
+        <if test="categoryName != null and categoryName != ''">
+            AND pc.`name` like CONCAT('%',#{categoryName},'%')
         </if>
     </sql>
 

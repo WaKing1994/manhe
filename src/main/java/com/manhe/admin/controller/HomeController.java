@@ -24,9 +24,12 @@ public class HomeController {
         ConfigDO home = configService.get(param);
         param.put("name","工程浏览数");
         ConfigDO cases = configService.get(param);
+        param.put("name","产品点赞数");
+        ConfigDO likes = configService.get(param);
         ModelAndView mav = new ModelAndView("admin/home/index");
         mav.addObject("homeViewCount", home.getValue());
         mav.addObject("caseViewCount", cases.getValue());
+        mav.addObject("productLikeCount", likes.getValue());
         return mav;
     }
     @Autowired

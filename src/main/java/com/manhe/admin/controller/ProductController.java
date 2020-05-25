@@ -31,17 +31,20 @@ public class ProductController {
         Map<String, Object> param = new HashMap<>();
         param.put("categoryId", categoryId);
         List<ProductDTO> productDTOS = productService.find(param, pageInfo);
+        List<ProductCategoryDO> productCategorys = productCategoryService.find(null);
         ModelAndView mav = new ModelAndView("admin/product/list");
+        mav.addObject("productCategory", productCategorys);
         mav.addObject("products", productDTOS);
         mav.addObject("totalCounts", pageInfo.getTotalCount());
         return mav;
     }
 
     @PostMapping("/list2")
-    public Map<String, Object> list(@Param("productName") String productName, @Param("limits") Integer limits, @Param("page") Integer page, @Ignore Response response) {
+    public Map<String, Object> list(@Param("productName") String productName,@Param("categoryName") String categoryName, @Param("limits") Integer limits, @Param("page") Integer page, @Ignore Response response) {
         PageInfo pageInfo = PageInfo.genPageInfoPage(page == null ? 1 : page, limits == null ? 10 : limits);
         Map<String, Object> param = new HashMap<>();
         param.put("name", productName);
+        param.put("categoryName", categoryName);
         List<ProductDTO> productDTOS = productService.find(param, pageInfo);
         Map<String, Object> resultMap = new HashMap<String, Object>();
 

@@ -1,16 +1,10 @@
 package com.manhe.web.controller;
 
 import com.manhe.common.Response;
-import com.manhe.dal.dataobject.CaseDO;
-import com.manhe.dal.dataobject.NewsDO;
-import com.manhe.dal.dataobject.ProductCategoryDO;
-import com.manhe.dal.dataobject.ProductDO;
+import com.manhe.dal.dataobject.*;
 import com.manhe.dal.dto.ProductDTO;
 import com.manhe.dal.pageUtils.PageInfo;
-import com.manhe.service.CaseService;
-import com.manhe.service.NewsService;
-import com.manhe.service.ProductCategoryService;
-import com.manhe.service.ProductService;
+import com.manhe.service.*;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +52,16 @@ public class ProductController {
         ProductDO productDO = productService.get(param);
         productDO.setLikes(productDO.getLikes() + 1);
         productService.update(productDO);
+
+        Map<String, Object> configParam = new HashMap<>();
+        configParam.put("name", "产品点赞数");
+        ConfigDO configDO = configService.get(configParam);
+        if (configDO != null) {
+            Integer count = Integer.valueOf(configDO.getValue()) + 1;
+            configDO.setValue(count.toString());
+            configService.update(configDO);
+        }
+
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("code", 0);
         resultMap.put("msg", "success");
@@ -71,5 +75,5 @@ public class ProductController {
     @Autowired
     private ProductCategoryService productCategoryService;
     @Autowired
-    private NewsService newsService;
+    private ConfigService configService;
 }

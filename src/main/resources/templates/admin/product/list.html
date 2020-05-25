@@ -8,9 +8,16 @@
     </ul>
     <br/>
     <div class="demoTable">
-        产品名称：
+        <span style="margin-left: 10px;">产品名称：</span>
         <div class="layui-inline">
             <input class="layui-input" name="productName" id="productName" autocomplete="off">
+        </div>
+        <span style="margin-left: 10px;">分类名称：</span>
+        <div class="layui-inline">
+            <select class="layui-select" style="width:160px" name="categoryName" id="categoryName" autocomplete="off">
+                <option value=""></option>
+                <option th:each="it:${productCategory}" th:value="${it.name}" th:text="${it.name}"></option>
+            </select>
         </div>
         <button class="layui-btn" data-type="reload">搜索</button>
     </div>
@@ -67,6 +74,7 @@
                 {field:'categoryName', title:'产品分类'},
                 {field:'details',title:'描述'},
                 {field:'banner',title:'图片',templet:"#imgtmp"},
+                {field:'likes',title:'点赞次数'},
                 {field:'priority',title:'排序'},
                 {title:'编辑',width:80,templet:"#editButton"},
                 {title:'删除',width:80,templet:"#delButton"}
@@ -83,14 +91,15 @@
         var $ = layui.$, active = {
             reload: function(){
                 var productName = $('#productName');
-
+                var categoryName = $('#categoryName');
                 //执行重载
                 table.reload('productList', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
                     ,where: {
-                        productName: productName.val()
+                        productName: productName.val(),
+                        categoryName: categoryName.val()
                     }
                 }, 'data');
             }

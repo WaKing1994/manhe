@@ -11,6 +11,7 @@
         imageUrl,
         details,
         banner,
+        likes,
         categoryId
     </sql>
 
@@ -20,9 +21,10 @@
 
     <!-- 插入 -->
     <insert id="insert" parameterType="com.manhe.dal.dataobject.ProductDO">
-        INSERT INTO  <include refid="table"/>
-        (`name`,priority,imageUrl,details,banner,categoryId)
-        VALUES (#{name},#{priority},#{imageUrl},#{details},#{banner},#{categoryId})
+        INSERT INTO
+        <include refid="table"/>
+        (`name`,priority,imageUrl,details,banner,categoryId,likes)
+        VALUES (#{name},#{priority},#{imageUrl},#{details},#{banner},#{categoryId},0)
     </insert>
 
     <update id="update" parameterType="com.manhe.dal.dataobject.ProductDO">
@@ -33,13 +35,15 @@
         `imageUrl` = #{imageUrl},
         `details` = #{details},
         `banner` = #{banner},
+        `likes` = #{likes},
         categoryId = #{categoryId}
         where id=#{id}
     </update>
 
     <!-- 删除 -->
     <delete id="delete" parameterType="map">
-        DELETE FROM <include refid="table"/>
+        DELETE FROM
+        <include refid="table"/>
         WHERE 1=1
         <include refid="condition"></include>
     </delete>
@@ -47,7 +51,8 @@
     <select id="get" parameterType="map" resultType="com.manhe.dal.dataobject.ProductDO">
         SELECT
         <include refid="allFields"/>
-        FROM <include refid="table"/>
+        FROM
+        <include refid="table"/>
         WHERE 1=1
         <include refid="condition"></include>
         LIMIT 0, 1
@@ -56,7 +61,8 @@
     <select id="getListByMap" parameterType="Map" resultType="com.manhe.dal.dataobject.ProductDO">
         select
         <include refid="allFields"/>
-        from <include refid="table"/>
+        from
+        <include refid="table"/>
         where 1=1
         <include refid="condition"></include>
         order by priority desc

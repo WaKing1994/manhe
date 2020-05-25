@@ -53,7 +53,61 @@
         $(this).siblings().stop().fadeTo(500,1);
       });
     })
+    function like(productId,likeCount){
+      var formdata =
+              {
+                id: productId
+              };
+      $.ajax({
+        url: "/product/like",
+        type: "POST",
+        dataType: "json",
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(formdata),
+        success: function (data) {
+          if (data) {
+            var img = document.getElementById("productLike_"+productId);
+            img.src="images/collect.png";
+            $("#productLike_"+productId).removeAttr("onclick");
+            var like = document.getElementById("productLikeCount_"+productId);
+            like.innerHTML=likeCount+1;
+          } else {
+           // alert("提交失败！")
+          }
+        }
+        ,
+        error: function (e) {
+         // alert("提交失败！")
+        }
+      })
+    }
   </script>
+  <style>
+    .ipro_img{
+      position: relative;
+    }
+    .collect {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+    }
+    .collect i {
+      width: 25px;
+      height: 25px;
+      display: inline-block;
+    }
+    .collect i img {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      border: none;
+      padding: 0;
+    }
+    .collect .collect-num {
+      color: #FC7777;
+      vertical-align: middle;
+    }
+  </style>
 </head>
 
 <body onload="isPC()">
@@ -170,7 +224,21 @@
           <ul>
 
             <li class="col-xs-12 col-sm-6 col-md-6" th:each="it : ${item.products}">
-              <div class="ipro_img"><img  th:src="${{it.banner}}" alt="曼赫铜门"></div>
+              <div class="ipro_img">
+                <img  th:src="${{it.banner}}" alt="曼赫铜门">
+                <div class="collect">
+                  <i>
+                    <!-- 未关注状态 -->
+                    <img th:id="'productLike_'+${it.id}" th:onclick="'like('+${it.id}+','+${it.likes}+')'" src="images/collect-none.png" alt="">
+                    <!-- 已关注状态 -->
+                    <!-- <img src="images/collect.png" alt=""> -->
+                  </i>
+                  <!-- 未关注状态 -->
+                  <span th:id="'productLikeCount_'+${it.id}" th:text="${{it.likes}}"></span>
+                  <!-- 已关注状态 -->
+<!--                  <span class="collect-num">111</span>-->
+                </div>
+              </div>
               <div class="ipro_txt">
                 <p th:text="${{it.name}}"></p>
               </div>

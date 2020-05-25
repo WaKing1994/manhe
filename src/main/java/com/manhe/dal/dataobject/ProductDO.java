@@ -11,9 +11,18 @@ public class ProductDO implements Serializable {
     private String imageUrl;
     private String details;
     private String banner;
+    private Integer likes;
     private Long categoryId;
 
     public ProductDO() {
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
     }
 
     public Long getCategoryId() {

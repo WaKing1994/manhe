@@ -82,8 +82,31 @@
       })
     }
 
-    function more(categoryId){
-     alert(categoryId)
+    function more(categoryId,pageNo){
+      var formdata =
+              {
+                categoryId: categoryId,
+                pageNo:pageNo
+              };
+      $.ajax({
+        url: "/product/page",
+        type: "POST",
+        dataType: "json",
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(formdata),
+        success: function (res) {
+          if (data) {
+           console.log(data);
+           res.data
+          } else {
+            // alert("提交失败！")
+          }
+        }
+        ,
+        error: function (e) {
+          // alert("提交失败！")
+        }
+      })
     }
   </script>
   <style>
@@ -144,7 +167,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" style="margin-right:-10px;" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a class="navbar-brand" href="/"><img id="logoImage" src="images\logo.jpg" alt="曼赫铜门"></a> </div>
+          <a class="navbar-brand" href="/"><img id="logoImage" src="images\logo_new.jpg" alt="曼赫铜门"></a> </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav menu">
@@ -260,7 +283,7 @@
                 <p th:text="${{it.name}}"></p>
               </div>
             </li>
-            <div th:id="'categoryMore_'+${{item.id}}" th:onclick="'more('+${item.id}+')'">+MORE</div>
+            <div th:id="'categoryMore_'+${{item.id}}" th:onclick="'more('+${item.id}+',2)'">+MORE</div>
           </ul>
         </div>
       </div>

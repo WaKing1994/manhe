@@ -70,6 +70,23 @@ public class ProductController {
         return resultMap;
     }
 
+    @PostMapping("/product/page")
+    public Map<String, Object> page(@RequestBody Map<String, Object> param, @Ignore Response response) {
+
+        Integer categoryId = Integer.valueOf(param.get("categoryId").toString());
+        Integer pageNo = Integer.valueOf(param.get("pageNo").toString());
+
+        Map<String, Object> pageParam = new HashMap<>();
+        pageParam.put("categoryId", categoryId);
+        PageInfo pageInfo = PageInfo.genPageInfoPage(pageNo, 10);
+        List<ProductDTO> productDTOS = productService.find(pageParam,pageInfo);
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("code", 0);
+        resultMap.put("msg", "success");
+        resultMap.put("data", productDTOS);
+        return resultMap;
+    }
 
     @Autowired
     private ProductService productService;

@@ -38,6 +38,7 @@ public class ProductController {
             Map<String, Object> item = new HashMap<>();
             item.put("name", productCategoryDO.getName());
             item.put("details", productCategoryDO.getDetails());
+            item.put("id", productCategoryDO.getId());
             item.put("products", products);
             list.add(item);
         }

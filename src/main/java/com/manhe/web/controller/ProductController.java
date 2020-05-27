@@ -26,7 +26,7 @@ public class ProductController {
     public ModelAndView product(Integer categoryId) {
 
         List<ProductCategoryDO> productCategory = productCategoryService.find(null);
-        PageInfo pageInfo = PageInfo.genPageInfoPage(1, 10);
+        PageInfo pageInfo = PageInfo.genPageInfoPage(1, 6);
         List<Map<String, Object>> list = new ArrayList<>();
         Map<String, Object> param = new HashMap<>();
         param.put("id", categoryId);
@@ -78,7 +78,7 @@ public class ProductController {
 
         Map<String, Object> pageParam = new HashMap<>();
         pageParam.put("categoryId", categoryId);
-        PageInfo pageInfo = PageInfo.genPageInfoPage(pageNo, 10);
+        PageInfo pageInfo = PageInfo.genPageInfoPage(pageNo, 6);
         List<ProductDTO> productDTOS = productService.find(pageParam,pageInfo);
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
